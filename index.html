@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MotoVault</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>MotoVault</h1>
+    <p>Motorcycle and riding gear inventory management.</p>
+    <p class="app-count">3 items, 2 available</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Add Item</h2>
+      <form class="item-form">
+        <label>
+          Item Name
+          <input type="text" name="name" placeholder="Ex: Honda CB600F Hornet" required />
+        </label>
+        <label>
+          Item Type
+          <select name="itemType">
+            <option value="motorcycle">Motorcycle</option>
+            <option value="gear">Equipment</option>
+            <option value="accessory">Accessory</option>
+          </select>
+        </label>
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Store Inventory</h2>
+      <!-- When list is empty: <p class="empty">No items available.</p> -->
+      <ul class="item-list">
+        <li class="item-card">
+          <div>
+            <h3>Honda CB600F Hornet</h3>
+            <span class="badge badge-motorcycle">Motorcycle</span>
+          </div>
+          <span class="status">Available</span>
+        </li>
+        <li class="item-card done">
+          <div>
+            <h3>AGV K6 S Full Face Helmet</h3>
+            <span class="badge badge-gear">Equipment</span>
+          </div>
+          <span class="status">Out of stock</span>
+        </li>
+        <li class="item-card">
+          <div>
+            <h3>Yamaha MT-07</h3>
+            <span class="badge badge-motorcycle">Motorcycle</span>
+          </div>
+          <span class="status">Available</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">Web Technologies Project</footer>
+</body>
+</html>
