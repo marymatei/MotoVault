@@ -17,27 +17,38 @@ Sample data used across all stages:
 2. Casca Integrala AGV K6 S, done, Gear
 3. Yamaha MT-07, active, Motorcycle
 
+## Stages summary
+
+- **Stage 1 (Static mockup)**: Semantic HTML structure and custom dark theme CSS layout on 2 columns.
+- **Stage 2 (Data logic)**: Plain JavaScript, no DOM. `mockup/produse.js` holds the array and immutable functions (add, filter, toggle, count). Results printed in the browser console (F12).
+- **Stage 3 (Vite and React project)**: Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
+
 ## How to run
 
-Open index.html in a browser. No build step, no server.
+- **Stages 1 & 2**: Open `mockup/index.html` in a browser. No build step, no server.
+- **Stage 3**: Run the following commands in the terminal:
+  ```bash
+  cd frontend
+  npm install
+  npm run dev
+  ```
+  Then open the address printed in the terminal (http://localhost:5173).
 
 ## AI usage
 
 | Tool | Used for |
 | :--- | :--- |
-| Gemini | Architecture mapping from domain to lab constraints, HTML semantic structure, CSS layout |
+| Gemini | Architecture mapping from domain to lab constraints, HTML semantic structure, CSS layout, Vite & React setup |
+| Claude | SVG logo and vector branding generation |
 
-Details per stage: see the ai_log/ folder.
-
-## Stage 2: data logic
-
-Plain JavaScript, no DOM. produse.js holds the array and the functions that read and change it. Results are printed in the browser console (F12).
+Details per stage: see the `ai_log/` folder.
 
 ## Status
 
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
-- [ ] Stage 3: Vite and React project
+- [x] Stage 3: Vite and React project
+- [ ] Stage 4: React components
 
 ## Verification Table - Stage 1
 
@@ -63,3 +74,15 @@ Plain JavaScript, no DOM. produse.js holds the array and the functions that read
 | S2-R5 | original array unchanged after add | [produse.js#L77](https://github.com/marymatei/MotoVault/blob/3a709bb/produse.js#L77) | console line |
 | S2-R6 | README Stage 2 section + AI log | README.md, ai_log/etapa_2.md | read |
 | S2-R7 | commit "Stage 2" pushed | [Commit Stage 2](https://github.com/marymatei/MotoVault/commit/3a709bb) | commit history |
+
+## Verification Table - Stage 3
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S3-R1 | npm run dev starts without errors | frontend/package.json | npm install, npm run dev |
+| S3-R2 | app name and counter computed from data | frontend/src/App.jsx | edit data, save |
+| S3-R3 | data from README, not from the example | frontend/src/App.jsx | compare with README |
+| S3-R4 | stage 1 styles reused | frontend/src/App.css | look at the page |
+| S3-R5 | node_modules ignored, build passes | frontend/.gitignore | npm run build |
+| S3-R6 | README Stage 3 section + AI log | README.md, ai_log/etapa_3.md | read |
+| S3-R7 | commit "Stage 3" pushed | commit history | check git log |

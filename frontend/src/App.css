@@ -1,0 +1,268 @@
+:root {
+  /* Paletă estetică: Obsidian, Gunmetal & Acid Wasabi */
+  --bg-deep: #08090c;
+  --bg-surface: rgba(17, 20, 27, 0.75);
+  --bg-surface-hover: rgba(23, 28, 38, 0.88);
+  --accent-rare: #d4ff32; /* Acid Wasabi / Cyber Chartreuse */
+  --accent-glow: rgba(212, 255, 50, 0.28);
+  --titanium-tint: rgba(147, 112, 219, 0.12); /* Reflexie fină de evacuare din titan ars */
+  --text-pure: #f8fafc;
+  --text-muted: #848d9c;
+  --border-glass: rgba(255, 255, 255, 0.07);
+  --border-active: rgba(212, 255, 50, 0.55);
+  --badge-moto: #d4ff32;
+  --badge-gear: #38bdf8;
+  --status-active: #4ade80;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 15% 15%, var(--titanium-tint) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(212, 255, 50, 0.05) 0%, transparent 40%),
+    linear-gradient(180deg, #08090c 0%, #0d0f15 100%);
+  color: var(--text-pure);
+  min-height: 100vh;
+  padding: 48px 20px;
+  letter-spacing: -0.01em;
+}
+
+/* Header tehnic / minimalist dark */
+header, .app-header {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto 44px;
+  padding: 34px 20px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+header::after, .app-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-rare), transparent);
+  opacity: 0.7;
+}
+
+header h1, .app-header h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-pure);
+  text-shadow: 0 0 24px rgba(212, 255, 50, 0.3);
+  margin-bottom: 8px;
+}
+
+header p, .app-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.app-count {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--accent-rare) !important;
+}
+
+/* Cerința Pasul 6 din Ghid: 1 singură coloană pe lățime */
+main, .container {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  /* Etapa 3: doar panoul cu date; a doua coloană revine în Etapa 7 */
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Panou Glassmorphism */
+form, .inventory-container, section, .panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h2::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 16px;
+  background: var(--accent-rare);
+  border-radius: 3px;
+  box-shadow: 0 0 12px var(--accent-rare);
+}
+
+/* Afișarea JSON brut temporară pentru Etapa 3 */
+pre {
+  background: rgba(9, 11, 16, 0.85);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 20px;
+  color: #a7f3d0;
+  font-family: "Fira Code", Consolas, Monaco, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Câmpuri de formular (pregătite pentru etapele următoare) */
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin: 18px 0 8px;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 13px 15px;
+  background: rgba(9, 11, 16, 0.85);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  color: var(--text-pure);
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-rare);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* Buton Accent Cyber */
+button {
+  width: 100%;
+  margin-top: 26px;
+  padding: 14px;
+  background: var(--accent-rare);
+  color: #0b0c10;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px var(--accent-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(212, 255, 50, 0.45);
+  filter: brightness(1.08);
+}
+
+/* Carduri de inventar */
+.card, article, .item-card {
+  position: relative;
+  background: rgba(14, 17, 24, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.card:hover, article:hover, .item-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: var(--bg-surface-hover);
+  border-color: var(--border-active);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7), 0 0 22px rgba(212, 255, 50, 0.12);
+}
+
+.card h3, article h3, .item-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+/* Badge categorie */
+.badge, .tag, .category {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding: 4px 11px;
+  border-radius: 100px;
+  background: rgba(212, 255, 50, 0.12);
+  color: var(--accent-rare);
+  border: 1px solid rgba(212, 255, 50, 0.25);
+}
+
+.status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--status-active);
+}
+
+.done, .sold {
+  opacity: 0.45;
+  background: rgba(10, 12, 17, 0.5);
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.done h3, .sold h3 {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+footer {
+  text-align: center;
+  margin-top: 54px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-rare) !important;
+  outline-offset: 3px !important;
+}
