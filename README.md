@@ -85,4 +85,4 @@ Details per stage: see the `ai_log/` folder.
 | S3-R4 | stage 1 styles reused | frontend/src/App.css | look at the page |
 | S3-R5 | node_modules ignored, build passes | frontend/.gitignore | npm run build |
 | S3-R6 | README Stage 3 section + AI log | README.md, ai_log/etapa_3.md | read |
-| S3-R7 | commit "Stage 3" pushed | commit history | check git log |
+| S3-R7 | commit "Stage 3" pushed | [Commit Stage 3](https://github.com/marymatei/MotoVault/commit/149e456) | commit history |
