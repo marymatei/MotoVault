@@ -99,4 +99,4 @@ Details per stage: see the `ai_log/` folder.
 | S4-R4 | message for empty list | frontend/src/components/ProdusList.jsx#L5 | set array to [] |
 | S4-R5 | state changes the card look | frontend/src/components/ProdusCard.jsx#L3 | toggle a disponibil flag |
 | S4-R6 | README Stage 4 section + AI log | README.md, ai_log/etapa_4.md | read |
-| S4-R7 | commit "Stage 4" pushed | commit history | check git log |
+| S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/marymatei/MotoVault/commit/718e575) | commit history |
