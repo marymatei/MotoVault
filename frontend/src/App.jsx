@@ -1,5 +1,7 @@
+import ProdusList from "./components/ProdusList.jsx";
+
 const produse = [
-  { id: 1, nume: "Honda CB600F Hornet", categorie: "Motorcycle", disponibil: true },
+  { id: 1, nume: "Honda CB600F Hornet", categorie: "Motorcycle", disponibil: false },
   { id: 2, nume: "AGV K6 S Full Face Helmet", categorie: "Equipment", disponibil: false },
   { id: 3, nume: "Yamaha MT-07", categorie: "Motorcycle", disponibil: true }
 ];
@@ -20,8 +22,7 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Stoc Curent</h2>
-          {/* Temporar: date brute; componentele apar in Etapa 4 */}
-          <pre>{JSON.stringify(produse, null, 2)}</pre>
+          <ProdusList produse={produse} />
         </section>
       </main>
     </>
