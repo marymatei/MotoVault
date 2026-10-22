@@ -22,11 +22,12 @@ Sample data used across all stages:
 - **Stage 1 (Static mockup)**: Semantic HTML structure and custom dark theme CSS layout on 2 columns.
 - **Stage 2 (Data logic)**: Plain JavaScript, no DOM. `mockup/produse.js` holds the array and immutable functions (add, filter, toggle, count). Results printed in the browser console (F12).
 - **Stage 3 (Vite and React project)**: Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
+- **Stage 4 (React components)**: Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
 
 ## How to run
 
 - **Stages 1 & 2**: Open `mockup/index.html` in a browser. No build step, no server.
-- **Stage 3**: Run the following commands in the terminal:
+- **Stage 3 & 4**: Run the following commands in the terminal:
   ```bash
   cd frontend
   npm install
@@ -38,7 +39,7 @@ Sample data used across all stages:
 
 | Tool | Used for |
 | :--- | :--- |
-| Gemini | Architecture mapping from domain to lab constraints, HTML semantic structure, CSS layout, Vite & React setup |
+| Gemini | Architecture mapping from domain to lab constraints, HTML semantic structure, CSS layout, Vite & React setup, component decomposition |
 | Claude | SVG logo and vector branding generation |
 
 Details per stage: see the `ai_log/` folder.
@@ -48,7 +49,8 @@ Details per stage: see the `ai_log/` folder.
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
-- [ ] Stage 4: React components
+- [x] Stage 4: React components
+- [ ] Stage 5: local state and events
 
 ## Verification Table - Stage 1
 
@@ -86,3 +88,15 @@ Details per stage: see the `ai_log/` folder.
 | S3-R5 | node_modules ignored, build passes | frontend/.gitignore | npm run build |
 | S3-R6 | README Stage 3 section + AI log | README.md, ai_log/etapa_3.md | read |
 | S3-R7 | commit "Stage 3" pushed | [Commit Stage 3](https://github.com/marymatei/MotoVault/commit/149e456) | commit history |
+
+## Verification Table - Stage 4
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S4-R1 | 2+ components in src/components/ | frontend/src/components/ | open folder |
+| S4-R2 | card receives data through props | frontend/src/components/ProdusCard.jsx#L1 | read |
+| S4-R3 | map + key={id}, no console warnings | frontend/src/components/ProdusList.jsx#L11 | F12, Console |
+| S4-R4 | message for empty list | frontend/src/components/ProdusList.jsx#L5 | set array to [] |
+| S4-R5 | state changes the card look | frontend/src/components/ProdusCard.jsx#L3 | toggle a disponibil flag |
+| S4-R6 | README Stage 4 section + AI log | README.md, ai_log/etapa_4.md | read |
+| S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/marymatei/MotoVault/commit/718e575) | commit history |
