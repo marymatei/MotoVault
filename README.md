@@ -113,4 +113,4 @@ Details per stage: see the `ai_log/` folder.
 | S5-R5 | immutable updates (no push, splice, assignment) | frontend/src/App.jsx#L18-L26 | read |
 | S5-R6 | light/dark toggle: state + data-theme on html | frontend/src/App.jsx#L28, frontend/src/App.css#L10-L30 | click the button, test both themes |
 | S5-R7 | no console warnings; README + AI log | README.md, ai_log/etapa_5.md | F12, Console |
-| S5-R8 | commit "Stage 5" pushed | commit history | check git log |
+| S5-R8 | commit "Stage 5" pushed | [Commit Stage 5](https://github.com/marymatei/MotoVault/commit/a11e33a14456bde13f3806bd6779523a39142e9e) | commit history |
