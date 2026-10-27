@@ -23,11 +23,12 @@ Sample data used across all stages:
 - **Stage 2 (Data logic)**: Plain JavaScript, no DOM. `mockup/produse.js` holds the array and immutable functions (add, filter, toggle, count). Results printed in the browser console (F12).
 - **Stage 3 (Vite and React project)**: Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
 - **Stage 4 (React components)**: Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
+- **Stage 5 (Local state and events)**: Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
 
 ## How to run
 
 - **Stages 1 & 2**: Open `mockup/index.html` in a browser. No build step, no server.
-- **Stage 3 & 4**: Run the following commands in the terminal:
+- **Stages 3–5**: Run the following commands in the terminal:
   ```bash
   cd frontend
   npm install
@@ -39,7 +40,7 @@ Sample data used across all stages:
 
 | Tool | Used for |
 | :--- | :--- |
-| Gemini | Architecture mapping from domain to lab constraints, HTML semantic structure, CSS layout, Vite & React setup, component decomposition |
+| Gemini | Architecture mapping, Vite & React setup, component decomposition, React state management, Light/Dark theme implementation |
 | Claude | SVG logo and vector branding generation |
 
 Details per stage: see the `ai_log/` folder.
@@ -50,7 +51,7 @@ Details per stage: see the `ai_log/` folder.
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: React components
-- [ ] Stage 5: local state and events
+- [x] Stage 5: local state and events
 
 ## Verification Table - Stage 1
 
@@ -100,3 +101,16 @@ Details per stage: see the `ai_log/` folder.
 | S4-R5 | state changes the card look | frontend/src/components/ProdusCard.jsx#L3 | toggle a disponibil flag |
 | S4-R6 | README Stage 4 section + AI log | README.md, ai_log/etapa_4.md | read |
 | S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/marymatei/MotoVault/commit/718e575) | commit history |
+
+## Verification Table - Stage 5
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S5-R1 | list kept in useState, in App | frontend/src/App.jsx#L14 | read |
+| S5-R2 | toggling changes state and card look | frontend/src/App.jsx#L18, frontend/src/components/ProdusCard.jsx#L8 | click a checkbox |
+| S5-R3 | delete removes the item | frontend/src/App.jsx#L24, frontend/src/components/ProdusCard.jsx#L34 | click Delete |
+| S5-R4 | header counter derived, not in state | frontend/src/App.jsx#L36 | toggle/delete, watch counter |
+| S5-R5 | immutable updates (no push, splice, assignment) | frontend/src/App.jsx#L18-L26 | read |
+| S5-R6 | light/dark toggle: state + data-theme on html | frontend/src/App.jsx#L28, frontend/src/App.css#L10-L30 | click the button, test both themes |
+| S5-R7 | no console warnings; README + AI log | README.md, ai_log/etapa_5.md | F12, Console |
+| S5-R8 | commit "Stage 5" pushed | commit history | check git log |

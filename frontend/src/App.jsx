@@ -1,13 +1,38 @@
+import { useState } from "react";
 import ProdusList from "./components/ProdusList.jsx";
 import "./App.css";
 
-const produse = [
+const PRODUSE_INITIALE = [
   { id: 1, nume: "Honda CB600F Hornet", categorie: "Motorcycle", disponibil: false },
   { id: 2, nume: "AGV K6 S Full Face Helmet", categorie: "Equipment", disponibil: false },
   { id: 3, nume: "Yamaha MT-07", categorie: "Motorcycle", disponibil: true }
 ];
 
+function temaInitiala() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export default function App() {
+  const [produse, setProduse] = useState(PRODUSE_INITIALE);
+  const [tema, setTema] = useState(temaInitiala);
+
+  function handleToggle(id) {
+    setProduse((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, disponibil: !p.disponibil } : p))
+    );
+  }
+
+  function handleDelete(id) {
+    setProduse((prev) => prev.filter((p) => p.id !== id));
+  }
+
+  function handleTema() {
+    const noua = tema === "dark" ? "light" : "dark";
+    setTema(noua);
+    document.documentElement.dataset.theme = noua;
+  }
+
+  // Valori derivate (recalculate la fiecare randare)
   const total = produse.length;
   const disponibile = produse.filter((p) => p.disponibil).length;
   const indisponibile = total - disponibile;
@@ -18,10 +43,21 @@ export default function App() {
       <nav className="top-nav">
         <div className="nav-container">
           <div className="brand-logo">
-            <img src="/logo-cream.svg" alt="MotoVault Logo" style={{ width: "100px", height: "100px", objectFit: "contain" }} />
+            <img 
+              src="/logo-transparent-cream.png" 
+              alt="MotoVault Logo" 
+              style={{ width: "32px", height: "32px", objectFit: "contain" }} 
+            />
             <span className="brand-text">MotoVault</span>
           </div>
           <div className="nav-right">
+            <button
+              className="theme-toggle"
+              onClick={handleTema}
+              aria-pressed={tema === "dark"}
+            >
+              {tema === "dark" ? "Light Mode" : "Dark Mode"}
+            </button>
             <a href="#features" className="nav-link">Features</a>
             <a href="#how-it-works" className="nav-link">How it works</a>
             <a href="#inventory" className="btn-primary btn-sm">Open Inventory</a>
@@ -76,7 +112,11 @@ export default function App() {
               </div>
             </div>
 
-            <ProdusList produse={produse} />
+            <ProdusList
+              produse={produse}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+            />
           </div>
         </div>
       </section>

@@ -4,11 +4,47 @@
   padding: 0;
 }
 
+/* Etapa 5: Variabile de temă CSS */
+:root {
+  --bg: #0b0f15;
+  --card-bg: #111721;
+  --text: #ffffff;
+  --muted: #94a3b8;
+  --border: #1d2736;
+}
+
+:root[data-theme="light"] {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0f15;
+  --card-bg: #111721;
+  --text: #ffffff;
+  --muted: #94a3b8;
+  --border: #1d2736;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0f15;
+    --card-bg: #111721;
+    --text: #ffffff;
+    --muted: #94a3b8;
+    --border: #1d2736;
+  }
+}
+
 body {
-  background-color: #0b0f15;
-  color: #e2e8f0;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   scroll-behavior: smooth;
+  transition: background-color 0.25s, color 0.25s;
 }
 
 .landing-app {
@@ -18,8 +54,8 @@ body {
 
 /* Nav */
 .top-nav {
-  background-color: #0b0f15;
-  border-bottom: 1px solid #1a2330;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -43,17 +79,17 @@ body {
 .brand-text {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .nav-link {
-  color: #94a3b8;
+  color: var(--muted);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
@@ -61,7 +97,26 @@ body {
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: var(--text);
+}
+
+/* Etapa 5: Theme toggle button */
+.theme-toggle {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(132, 204, 22, 0.15);
+  border-color: #84cc16;
 }
 
 .btn-primary {
@@ -87,8 +142,8 @@ body {
 }
 
 .btn-secondary {
-  border: 1px solid #263346;
-  color: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--text);
   padding: 0.75rem 1.4rem;
   border-radius: 10px;
   font-weight: 600;
@@ -99,15 +154,14 @@ body {
 }
 
 .btn-secondary:hover {
-  border-color: #475569;
-  background-color: rgba(255, 255, 255, 0.03);
+  border-color: var(--muted);
 }
 
 /* Hero Section */
 .hero-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 3.5rem 1.5rem;
+  padding: 4.5rem 1.5rem 3rem 1.5rem;
   text-align: center;
 }
 
@@ -127,7 +181,7 @@ body {
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1.15;
-  color: #ffffff;
+  color: var(--text);
   margin: 1rem 0 1.25rem 0;
 }
 
@@ -136,7 +190,7 @@ body {
 }
 
 .hero-description {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 2.25rem;
@@ -161,8 +215,8 @@ body {
 }
 
 .inventory-preview-card {
-  background-color: #111721;
-  border: 1px solid #1d2736;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 2rem;
 }
@@ -174,21 +228,21 @@ body {
 .preview-header h3 {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .preview-subtitle {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .preview-search input {
   width: 100%;
-  background-color: #0b0f15;
-  border: 1px solid #1d2736;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 1.25rem;
 }
 
@@ -200,8 +254,8 @@ body {
 }
 
 .stat-box {
-  background-color: #0b0f15;
-  border: 1px solid #1a2330;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1rem;
   display: flex;
@@ -210,7 +264,7 @@ body {
 
 .stat-name {
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--muted);
   margin-bottom: 0.38rem;
 }
 
@@ -220,14 +274,14 @@ body {
 }
 
 .stat-num.white {
-  color: #ffffff;
+  color: var(--text);
 }
 
 .stat-num.green {
   color: #84cc16;
 }
 
-/* Card Items inside Inventory - Hover alb-crem tip buton */
+/* Card Items inside Inventory */
 .inventory-cards-list {
   display: flex;
   flex-direction: column;
@@ -235,40 +289,47 @@ body {
 }
 
 .inventory-card-item {
-  background-color: #0b0f15;
-  border: 1px solid #1a2330;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
-/* Highlight Alb-Crem la hover */
 .inventory-card-item:hover {
-  background-color: #151d2a;
-  border-color: #fef08a; /* Alb-crem luminos */
-  box-shadow: 0 0 15px rgba(254, 240, 138, 0.15), 0 4px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
+  border-color: #fef08a;
+  box-shadow: 0 0 15px rgba(254, 240, 138, 0.12);
+}
+
+/* Etapa 5: Label & Checkbox controlat */
+.card-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.card-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #84cc16;
+  cursor: pointer;
 }
 
 .card-icon-box {
   width: 44px;
   height: 44px;
-  background-color: #141c27;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #94a3b8;
-  transition: color 0.2s, background-color 0.2s;
-}
-
-.inventory-card-item:hover .card-icon-box {
-  background-color: #1e293b;
-  color: #fef08a; /* Iconita primeste si ea tenta alb-crem */
+  color: var(--muted);
 }
 
 .card-info {
@@ -278,17 +339,12 @@ body {
 .card-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
-  transition: color 0.2s;
-}
-
-.inventory-card-item:hover .card-title {
-  color: #fef3c7; /* Titlul se aprinde usor in alb-crem */
+  color: var(--text);
 }
 
 .card-category {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--muted);
 }
 
 .status-pill {
@@ -306,15 +362,34 @@ body {
 
 .status-pill.unavailable {
   background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #64748b;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* Etapa 5: Butonul de ștergere periculoasă (btn-danger) */
+.btn-danger {
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: #ef4444;
+  color: #ffffff;
 }
 
 /* Metrics Banner */
 .metrics-banner {
-  background-color: #0d121a;
-  border-top: 1px solid #1a2330;
-  border-bottom: 1px solid #1a2330;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 3.5rem 1.5rem;
   margin-top: 2rem;
 }
@@ -327,27 +402,28 @@ body {
   gap: 2rem;
 }
 
+.metric-item {
+  text-align: center;
+}
+
 .metric-number {
   font-size: 3rem;
   font-weight: 900;
   color: #84cc16;
   display: block;
   margin-bottom: 0.5rem;
-  text-align: center;
 }
 
 .metric-item h4 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 0.25rem;
-  text-align: center;
 }
 
 .metric-item p {
-  color: #64748b;
+  color: var(--muted);
   font-size: 0.9rem;
-  text-align: center;
 }
 
 /* Features */
@@ -360,12 +436,12 @@ body {
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 1.05rem;
   margin-bottom: 2.5rem;
 }
@@ -383,8 +459,8 @@ body {
 }
 
 .feature-card {
-  background-color: #111721;
-  border: 1px solid #1d2736;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.75rem;
 }
@@ -408,12 +484,12 @@ body {
 .feature-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 0.6rem;
 }
 
 .feature-card p {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.5;
 }
@@ -455,20 +531,20 @@ body {
 .step-card h3 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
 .step-card p {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
 /* CTA Banner */
 .cta-banner {
-  background-color: #111721;
-  border: 1px solid #1d2736;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 3.5rem 2rem;
   text-align: center;
@@ -477,21 +553,21 @@ body {
 .cta-banner h2 {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
   margin-bottom: 0.75rem;
 }
 
 .cta-banner p {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 1.05rem;
   margin-bottom: 1.75rem;
 }
 
 /* Footer */
 .footer-bar {
-  border-top: 1px solid #1a2330;
+  border-top: 1px solid var(--border);
   padding: 2rem 1.5rem;
-  background-color: #0b0f15;
+  background-color: var(--bg);
 }
 
 .footer-container {
@@ -500,7 +576,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #64748b;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
@@ -510,11 +586,11 @@ body {
 }
 
 .footer-links a {
-  color: #94a3b8;
+  color: var(--muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: #ffffff;
+  color: var(--text);
 }
