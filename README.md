@@ -24,6 +24,7 @@ Sample data used across all stages:
 - **Stage 3 (Vite and React project)**: Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
 - **Stage 4 (React components)**: Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
 - **Stage 5 (Local state and events)**: Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
+- **Stage 6 (Mock API)**: Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
 
 ## How to run
 
@@ -34,7 +35,14 @@ Sample data used across all stages:
   npm install
   npm run dev
   ```
-  Then open the address printed in the terminal (http://localhost:5173).
+  Then open the address printed in the terminal (http://localhost:5173)
+  - **Stage 6**: Open two separate terminals in `frontend/`:
+  ```bash
+  # Terminal 1 (API Server)
+  npm run api
+  # Terminal 2 (Vite Frontend)
+  npm run dev
+  Then open http://localhost:5173
 
 ## AI usage
 
@@ -52,6 +60,7 @@ Details per stage: see the `ai_log/` folder.
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: React components
 - [x] Stage 5: local state and events
+- [x] Stage 6: data from a mock API
 
 ## Verification Table - Stage 1
 
@@ -114,3 +123,15 @@ Details per stage: see the `ai_log/` folder.
 | S5-R6 | light/dark toggle: state + data-theme on html | frontend/src/App.jsx#L28, frontend/src/App.css#L10-L30 | click the button, test both themes |
 | S5-R7 | no console warnings; README + AI log | README.md, ai_log/etapa_5.md | F12, Console |
 | S5-R8 | commit "Stage 5" pushed | [Commit Stage 5](https://github.com/marymatei/MotoVault/commit/a11e33a14456bde13f3806bd6779523a39142e9e) | commit history |
+
+## Verification Table - Stage 6
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S6-R1 | npm run api starts, route shows JSON | [frontend/package.json](https://github.com/marymatei/MotoVault/blob/main/frontend/package.json#L11), [frontend/db.json](https://github.com/marymatei/MotoVault/blob/main/frontend/db.json) | open localhost:3001/produse |
+| S6-R2 | data no longer in React code | [frontend/src/App.jsx](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx#L12) | read |
+| S6-R3 | loading message while waiting | [frontend/src/App.jsx](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx#L106) | -delay 4000 |
+| S6-R4 | error message when API is down | [frontend/src/App.jsx](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx#L107-L111) | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | [frontend/src/api.js](https://github.com/marymatei/MotoVault/blob/main/frontend/src/api.js#L4-L10), [frontend/.env.example](https://github.com/marymatei/MotoVault/blob/main/frontend/.env.example) | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | README.md, ai_log/etapa_6.md | read |
+| S6-R7 | commit "Stage 6" pushed | [Commit Stage 6]() | commit history |

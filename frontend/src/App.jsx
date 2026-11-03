@@ -1,20 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProdusList from "./components/ProdusList.jsx";
+import Game from "./components/Game.jsx";
+import { fetchProduse } from "./api.js";
 import "./App.css";
-
-const PRODUSE_INITIALE = [
-  { id: 1, nume: "Honda CB600F Hornet", categorie: "Motorcycle", disponibil: false },
-  { id: 2, nume: "AGV K6 S Full Face Helmet", categorie: "Equipment", disponibil: false },
-  { id: 3, nume: "Yamaha MT-07", categorie: "Motorcycle", disponibil: true }
-];
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [produse, setProduse] = useState(PRODUSE_INITIALE);
+  const [cautare, setCautare] = useState("");
+  const [produse, setProduse] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
+  function handleAdd() {
+  if (!cautare.trim()) return; // Nu se adauga daca caseta este goala
+
+  const nouProdus = {
+    id: Date.now(), // ID unic bazat pe timestamp
+    nume: cautare.trim(),
+    disponibil: true, // Implicit este disponibil
+    eticheta: "Echipament"
+  };
+
+  setProduse((prev) => [nouProdus, ...prev]); // il punem la inceputul listei
+  setCautare(""); // curatare bara pentru a afisa din nou toata lista
+}
+
+  // Etapa 6: Preluare date de la API la incarcare (useEffect cu cleanup flag)
+  useEffect(() => {
+    let ignore = false;
+    async function load() {
+      try {
+        const data = await fetchProduse();
+        if (!ignore) setProduse(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggle(id) {
     setProduse((prev) =>
@@ -32,7 +63,10 @@ export default function App() {
     document.documentElement.dataset.theme = noua;
   }
 
-  // Valori derivate (recalculate la fiecare randare)
+// Valori derivate (recalculate la fiecare generare)
+  const produseFiltrate = produse.filter((p) =>
+    p.nume.toLowerCase().includes(cautare.toLowerCase())
+  );
   const total = produse.length;
   const disponibile = produse.filter((p) => p.disponibil).length;
   const indisponibile = total - disponibile;
@@ -60,6 +94,7 @@ export default function App() {
             </button>
             <a href="#features" className="nav-link">Features</a>
             <a href="#how-it-works" className="nav-link">How it works</a>
+            <a href="#arcade" className="nav-link">Arcade 🏍️</a>
             <a href="#inventory" className="btn-primary btn-sm">Open Inventory</a>
           </div>
         </div>
@@ -93,8 +128,24 @@ export default function App() {
               </div>
             </div>
 
-            <div className="preview-search">
-              <input type="text" placeholder="Search product..." readOnly />
+            <div className="preview-search" style={{ display: "flex", gap: "10px", marginBottom: "1.25rem" }}>
+              <input 
+                type="text" 
+                placeholder="Search or type new product name..." 
+                value={cautare}
+                onChange={(e) => setCautare(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleAdd()} // Permite adăugarea și la apăsarea tastei Enter
+                style={{ marginBottom: 0 }}
+              />
+              <button 
+                type="button"
+                className="btn-primary"
+                onClick={handleAdd}
+                title="Add product"
+                style={{ padding: "0 1.25rem", fontSize: "1.3rem", fontWeight: "bold", cursor: "pointer" }}
+              >
+                +
+              </button>
             </div>
 
             <div className="preview-stats">
@@ -112,12 +163,28 @@ export default function App() {
               </div>
             </div>
 
-            <ProdusList
-              produse={produse}
-              onToggle={handleToggle}
-              onDelete={handleDelete}
-            />
+            {/* Etapa 6: Stari de incarcare, eroare si afisare lista */}
+            {loading && <p className="info" style={{ padding: "16px" }}>Se încarcă produsele...</p>}
+            {error && (
+              <p className="error" style={{ margin: "16px" }}>
+                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+              </p>
+            )}
+            {!loading && !error && (
+              <ProdusList
+                produse={produseFiltrate}
+                onToggle={handleToggle}
+                onDelete={handleDelete}
+              />
+            )}
           </div>
+        </div>
+      </section>
+
+      {/* Arcade Game Section */}
+      <section className="arcade-section" id="arcade" style={{ padding: "40px 20px" }}>
+        <div className="inventory-container">
+          <Game />
         </div>
       </section>
 

@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-/* Etapa 5: Variabile de temă CSS */
 :root {
   --bg: #0b0f15;
   --card-bg: #111721;
@@ -100,7 +99,6 @@ body {
   color: var(--text);
 }
 
-/* Etapa 5: Theme toggle button */
 .theme-toggle {
   padding: 6px 14px;
   border: 1px solid var(--border);
@@ -304,7 +302,6 @@ body {
   box-shadow: 0 0 15px rgba(254, 240, 138, 0.12);
 }
 
-/* Etapa 5: Label & Checkbox controlat */
 .card-main {
   display: flex;
   align-items: center;
@@ -366,7 +363,6 @@ body {
   color: var(--muted);
 }
 
-/* Etapa 5: Butonul de ștergere periculoasă (btn-danger) */
 .btn-danger {
   border: 1px solid #ef4444;
   background: transparent;
@@ -383,6 +379,109 @@ body {
 .btn-danger:hover {
   background: #ef4444;
   color: #ffffff;
+}
+
+/* Arcade Game Section */
+.game-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem 1.5rem;
+}
+
+.game-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.game-scoreboard {
+  display: flex;
+  gap: 1rem;
+}
+
+.score-box {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 85px;
+}
+
+.score-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.score-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.score-value.green { color: #84cc16; }
+.score-value.yellow { color: #fef08a; }
+.score-value.red { color: #ef4444; }
+.score-value.white { color: var(--text); }
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: 420px;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(11, 15, 21, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.game-overlay h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.game-overlay .danger-text {
+  color: #ef4444;
+}
+
+.game-overlay p {
+  color: var(--muted);
+  font-size: 1.05rem;
 }
 
 /* Metrics Banner */
@@ -593,4 +692,18 @@ body {
 
 .footer-links a:hover {
   color: var(--text);
+}
+
+
+/* Etapa 6: stari incarcare si eroare */
+.info {
+  color: var(--muted, #9ca3af);
+}
+
+.error {
+  color: #ef4444;
+  background: var(--error-bg, #2a1515);
+  border: 1px solid var(--error-border, #7f1d1d);
+  border-radius: 8px;
+  padding: 10px 12px;
 }

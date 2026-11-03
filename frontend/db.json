@@ -1,0 +1,34 @@
+{
+  "produse": [
+    {
+      "id": 1,
+      "nume": "Cască Shoei X-Sprint",
+      "disponibil": true,
+      "eticheta": "Echipament"
+    },
+    {
+      "id": 2,
+      "nume": "Mănuși Alpinestars GP Pro",
+      "disponibil": false,
+      "eticheta": "Protecții"
+    },
+    {
+      "id": 3,
+      "nume": "Jachetă Dainese Racing 4",
+      "disponibil": true,
+      "eticheta": "Echipament"
+    },
+    {
+      "id": 4,
+      "nume": "Ulei Motul 300V 10W40",
+      "disponibil": true,
+      "eticheta": "Consumabile"
+    },
+    {
+      "id": 5,
+      "nume": "Cric Moto Spate Universal",
+      "disponibil": false,
+      "eticheta": "Accesorii"
+    }
+  ]
+}
