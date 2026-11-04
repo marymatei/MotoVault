@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ProdusList from "./components/ProdusList.jsx";
 import Game from "./components/Game.jsx";
+import BackgroundGears from "./components/BackgroundGears.jsx";
 import { fetchProducts } from "./api.js";
 import "./App.css";
 
@@ -16,10 +17,10 @@ export default function App() {
   const [theme, setTheme] = useState(initialTheme);
 
   function handleAdd() {
-    if (!search.trim()) return; // Do not add if search box is empty
+    if (!search.trim()) return;
 
     const newProduct = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(),
       nume: search.trim(),
       name: search.trim(),
       disponibil: true,
@@ -28,11 +29,10 @@ export default function App() {
       tag: "Gear"
     };
 
-    setProducts((prev) => [newProduct, ...prev]); // Add item to the top of the list
-    setSearch(""); // Reset input field
+    setProducts((prev) => [newProduct, ...prev]);
+    setSearch("");
   }
 
-  // Stage 6: Fetch data from API on mount (useEffect with cleanup flag)
   useEffect(() => {
     let ignore = false;
     async function load() {
@@ -75,7 +75,6 @@ export default function App() {
     document.documentElement.dataset.theme = newTheme;
   }
 
-  // Derived values recalculated on each render
   const filteredProducts = products.filter((p) => {
     const itemName = p.nume || p.name || "";
     return itemName.toLowerCase().includes(search.toLowerCase());
@@ -87,14 +86,16 @@ export default function App() {
 
   return (
     <div className="landing-app">
+      <BackgroundGears />
+
       {/* Navigation */}
       <nav className="top-nav">
         <div className="nav-container">
           <div className="brand-logo">
             <img 
-              src="/logo-transparent-cream.png" 
+              src={theme === "dark" ? "/logo-transparent-cream.png" : "/logo-light-removebg-preview.png"} 
               alt="MotoVault Logo" 
-              style={{ width: "32px", height: "32px", objectFit: "contain" }} 
+              className="brand-logo-img"
             />
             <span className="brand-text">MotoVault</span>
           </div>
@@ -177,7 +178,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Stage 6: Loading, error states and list rendering */}
             {loading && <p className="info" style={{ padding: "16px" }}>Loading products...</p>}
             {error && (
               <p className="error" style={{ margin: "16px" }}>
