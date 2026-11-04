@@ -1,12 +1,16 @@
 export default function ProdusCard({ produs, onToggle, onDelete }) {
-  const isMotorcycle = produs.categorie === "Motorcycle" || produs.categorie === "Motocicletă";
+  // Extract values with English fallbacks matching db.json fields
+  const itemName = produs.name || produs.nume || "Product";
+  const itemTag = produs.tag || produs.category || produs.categorie || "Gear";
+  const isAvailable = produs.available ?? produs.disponibil ?? true;
+  const isMotorcycle = itemTag === "Motorcycle";
 
   return (
-    <article className={produs.disponibil ? "inventory-card-item" : "inventory-card-item unavailable"}>
+    <article className={isAvailable ? "inventory-card-item" : "inventory-card-item unavailable"}>
       <label className="card-main">
         <input
           type="checkbox"
-          checked={produs.disponibil}
+          checked={isAvailable}
           onChange={() => onToggle(produs.id)}
         />
         <div className="card-icon-box">
@@ -23,19 +27,19 @@ export default function ProdusCard({ produs, onToggle, onDelete }) {
           )}
         </div>
         <div className="card-info">
-          <h4 className="card-title">{produs.nume}</h4>
-          <p className="card-category">{produs.categorie}</p>
+          <h4 className="card-title">{itemName}</h4>
+          <p className="card-category">{itemTag}</p>
         </div>
       </label>
 
-      <span className={produs.disponibil ? "status-pill available" : "status-pill unavailable"}>
-        {produs.disponibil ? "Available" : "Unavailable"}
+      <span className={isAvailable ? "status-pill available" : "status-pill unavailable"}>
+        {isAvailable ? "Available" : "Unavailable"}
       </span>
 
       <button
         className="btn-danger"
         onClick={() => onDelete(produs.id)}
-        aria-label={`Delete ${produs.nume}`}
+        aria-label={`Delete ${itemName}`}
       >
         Delete
       </button>

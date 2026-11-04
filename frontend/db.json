@@ -1,34 +1,34 @@
 {
-  "produse": [
+  "products": [
     {
       "id": 1,
-      "nume": "Cască Shoei X-Sprint",
-      "disponibil": true,
-      "eticheta": "Echipament"
+      "name": "Shoei X-Sprint Helmet",
+      "available": true,
+      "tag": "Gear"
     },
     {
       "id": 2,
-      "nume": "Mănuși Alpinestars GP Pro",
-      "disponibil": false,
-      "eticheta": "Protecții"
+      "name": "Alpinestars GP Pro Gloves",
+      "available": false,
+      "tag": "Protection"
     },
     {
       "id": 3,
-      "nume": "Jachetă Dainese Racing 4",
-      "disponibil": true,
-      "eticheta": "Echipament"
+      "name": "Dainese Racing 4 Jacket",
+      "available": true,
+      "tag": "Gear"
     },
     {
       "id": 4,
-      "nume": "Ulei Motul 300V 10W40",
-      "disponibil": true,
-      "eticheta": "Consumabile"
+      "name": "Motul 300V 10W40 Oil",
+      "available": true,
+      "tag": "Consumables"
     },
     {
       "id": 5,
-      "nume": "Cric Moto Spate Universal",
-      "disponibil": false,
-      "eticheta": "Accesorii"
+      "name": "Universal Rear Motorcycle Stand",
+      "available": false,
+      "tag": "Accessories"
     }
   ]
 }

@@ -1,40 +1,44 @@
 import { useState, useEffect } from "react";
 import ProdusList from "./components/ProdusList.jsx";
 import Game from "./components/Game.jsx";
-import { fetchProduse } from "./api.js";
+import { fetchProducts } from "./api.js";
 import "./App.css";
 
-function temaInitiala() {
+function initialTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [cautare, setCautare] = useState("");
-  const [produse, setProduse] = useState([]);
+  const [search, setSearch] = useState("");
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [tema, setTema] = useState(temaInitiala);
+  const [theme, setTheme] = useState(initialTheme);
+
   function handleAdd() {
-  if (!cautare.trim()) return; // Nu se adauga daca caseta este goala
+    if (!search.trim()) return; // Do not add if search box is empty
 
-  const nouProdus = {
-    id: Date.now(), // ID unic bazat pe timestamp
-    nume: cautare.trim(),
-    disponibil: true, // Implicit este disponibil
-    eticheta: "Echipament"
-  };
+    const newProduct = {
+      id: Date.now(), // Unique ID based on timestamp
+      nume: search.trim(),
+      name: search.trim(),
+      disponibil: true,
+      available: true,
+      categorie: "Gear",
+      tag: "Gear"
+    };
 
-  setProduse((prev) => [nouProdus, ...prev]); // il punem la inceputul listei
-  setCautare(""); // curatare bara pentru a afisa din nou toata lista
-}
+    setProducts((prev) => [newProduct, ...prev]); // Add item to the top of the list
+    setSearch(""); // Reset input field
+  }
 
-  // Etapa 6: Preluare date de la API la incarcare (useEffect cu cleanup flag)
+  // Stage 6: Fetch data from API on mount (useEffect with cleanup flag)
   useEffect(() => {
     let ignore = false;
     async function load() {
       try {
-        const data = await fetchProduse();
-        if (!ignore) setProduse(data);
+        const data = await fetchProducts();
+        if (!ignore) setProducts(data);
       } catch (err) {
         if (!ignore) setError(err.message);
       } finally {
@@ -48,28 +52,38 @@ export default function App() {
   }, []);
 
   function handleToggle(id) {
-    setProduse((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, disponibil: !p.disponibil } : p))
+    setProducts((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? {
+              ...p,
+              disponibil: !(p.disponibil ?? p.available),
+              available: !(p.available ?? p.disponibil)
+            }
+          : p
+      )
     );
   }
 
   function handleDelete(id) {
-    setProduse((prev) => prev.filter((p) => p.id !== id));
+    setProducts((prev) => prev.filter((p) => p.id !== id));
   }
 
-  function handleTema() {
-    const noua = tema === "dark" ? "light" : "dark";
-    setTema(noua);
-    document.documentElement.dataset.theme = noua;
+  function handleTheme() {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.dataset.theme = newTheme;
   }
 
-// Valori derivate (recalculate la fiecare generare)
-  const produseFiltrate = produse.filter((p) =>
-    p.nume.toLowerCase().includes(cautare.toLowerCase())
-  );
-  const total = produse.length;
-  const disponibile = produse.filter((p) => p.disponibil).length;
-  const indisponibile = total - disponibile;
+  // Derived values recalculated on each render
+  const filteredProducts = products.filter((p) => {
+    const itemName = p.nume || p.name || "";
+    return itemName.toLowerCase().includes(search.toLowerCase());
+  });
+
+  const total = products.length;
+  const available = products.filter((p) => p.disponibil ?? p.available).length;
+  const unavailable = total - available;
 
   return (
     <div className="landing-app">
@@ -87,10 +101,10 @@ export default function App() {
           <div className="nav-right">
             <button
               className="theme-toggle"
-              onClick={handleTema}
-              aria-pressed={tema === "dark"}
+              onClick={handleTheme}
+              aria-pressed={theme === "dark"}
             >
-              {tema === "dark" ? "Light Mode" : "Dark Mode"}
+              {theme === "dark" ? "Light Mode" : "Dark Mode"}
             </button>
             <a href="#features" className="nav-link">Features</a>
             <a href="#how-it-works" className="nav-link">How it works</a>
@@ -132,9 +146,9 @@ export default function App() {
               <input 
                 type="text" 
                 placeholder="Search or type new product name..." 
-                value={cautare}
-                onChange={(e) => setCautare(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleAdd()} // Permite adăugarea și la apăsarea tastei Enter
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleAdd()}
                 style={{ marginBottom: 0 }}
               />
               <button 
@@ -155,24 +169,24 @@ export default function App() {
               </div>
               <div className="stat-box">
                 <span className="stat-name">Available</span>
-                <span className="stat-num green">{disponibile}</span>
+                <span className="stat-num green">{available}</span>
               </div>
               <div className="stat-box">
                 <span className="stat-name">Unavailable</span>
-                <span className="stat-num white">{indisponibile}</span>
+                <span className="stat-num white">{unavailable}</span>
               </div>
             </div>
 
-            {/* Etapa 6: Stari de incarcare, eroare si afisare lista */}
-            {loading && <p className="info" style={{ padding: "16px" }}>Se încarcă produsele...</p>}
+            {/* Stage 6: Loading, error states and list rendering */}
+            {loading && <p className="info" style={{ padding: "16px" }}>Loading products...</p>}
             {error && (
               <p className="error" style={{ margin: "16px" }}>
-                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+                Could not load data: {error}. Did you run <code>npm run api</code>?
               </p>
             )}
             {!loading && !error && (
               <ProdusList
-                produse={produseFiltrate}
+                produse={filteredProducts}
                 onToggle={handleToggle}
                 onDelete={handleDelete}
               />
