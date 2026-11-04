@@ -134,4 +134,4 @@ Details per stage: see the `ai_log/` folder.
 | S6-R4 | error message when API is down | [frontend/src/App.jsx](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx#L107-L111) | stop npm run api, refresh |
 | S6-R5 | fetch only in api.js, URL from env | [frontend/src/api.js](https://github.com/marymatei/MotoVault/blob/main/frontend/src/api.js#L4-L10), [frontend/.env.example](https://github.com/marymatei/MotoVault/blob/main/frontend/.env.example) | search for fetch |
 | S6-R6 | README Stage 6 section + AI log | README.md, ai_log/etapa_6.md | read |
-| S6-R7 | commit "Stage 6" pushed | [Commit Stage 6]() | commit history |
+| S6-R7 | commit "Stage 6" pushed | [Commit Stage 6](https://github.com/marymatei/MotoVault/commit/19b3369) | commit history |
