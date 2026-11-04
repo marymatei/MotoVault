@@ -95,37 +95,38 @@ Details per stage: see the `ai_log/` folder.
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S3-R1 | npm run dev starts without errors | frontend/package.json | npm install, npm run dev |
-| S3-R2 | app name and counter computed from data | frontend/src/App.jsx | edit data, save |
-| S3-R3 | data from README, not from the example | frontend/src/App.jsx | compare with README |
-| S3-R4 | stage 1 styles reused | frontend/src/App.css | look at the page |
-| S3-R5 | node_modules ignored, build passes | frontend/.gitignore | npm run build |
-| S3-R6 | README Stage 3 section + AI log | README.md, ai_log/etapa_3.md | read |
+| S3-R1 | npm run dev starts without errors | [`frontend/package.json`](https://github.com/marymatei/MotoVault/blob/main/frontend/package.json) | npm install, npm run dev |
+| S3-R2 | app name and counter computed from data | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx) | edit data, save |
+| S3-R3 | data from README, not from the example | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx) | compare with README |
+| S3-R4 | stage 1 styles reused | [`App.css`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.css) | look at the page |
+| S3-R5 | node_modules ignored, build passes | [`frontend/.gitignore`](https://github.com/marymatei/MotoVault/blob/main/frontend/.gitignore) | npm run build |
+| S3-R6 | README Stage 3 section + AI log | [`README.md`](https://github.com/marymatei/MotoVault/blob/main/README.md), [`ai_log/etapa_3.md`](https://github.com/marymatei/MotoVault/blob/main/ai_log/etapa_3.md) | read |
 | S3-R7 | commit "Stage 3" pushed | [Commit Stage 3](https://github.com/marymatei/MotoVault/commit/149e456) | commit history |
 
 ## Verification Table - Stage 4
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S4-R1 | 2+ components in src/components/ | frontend/src/components/ | open folder |
-| S4-R2 | card receives data through props | frontend/src/components/ProdusCard.jsx#L1 | read |
-| S4-R3 | map + key={id}, no console warnings | frontend/src/components/ProdusList.jsx#L11 | F12, Console |
-| S4-R4 | message for empty list | frontend/src/components/ProdusList.jsx#L5 | set array to [] |
-| S4-R5 | state changes the card look | frontend/src/components/ProdusCard.jsx#L3 | toggle a disponibil flag |
-| S4-R6 | README Stage 4 section + AI log | README.md, ai_log/etapa_4.md | read |
+| S4-R1 | 2+ components in src/components/ | [`src/components/`](https://github.com/marymatei/MotoVault/tree/main/frontend/src/components) | open folder |
+| S4-R2 | card receives data through props | [`ProdusCard.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusCard.jsx) | read |
+| S4-R3 | map + key={id}, no console warnings | [`ProdusList.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusList.jsx) | F12, Console |
+| S4-R4 | message for empty list | [`ProdusList.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusList.jsx) | set array to [] |
+| S4-R5 | state changes the card look | [`ProdusCard.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusCard.jsx) | toggle a disponibil flag |
+| S4-R6 | README Stage 4 section + AI log | [`README.md`](https://github.com/marymatei/MotoVault/blob/main/README.md), [`ai_log/etapa_4.md`](https://github.com/marymatei/MotoVault/blob/main/ai_log/etapa_4.md) | read |
+| S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/marymatei/MotoVault/commit/718e575) | commit history |
 | S4-R7 | commit "Stage 4" pushed | [Commit Stage 4](https://github.com/marymatei/MotoVault/commit/718e575) | commit history |
 
 ## Verification Table - Stage 5
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S5-R1 | list kept in useState, in App | frontend/src/App.jsx#L14 | read |
-| S5-R2 | toggling changes state and card look | frontend/src/App.jsx#L18, frontend/src/components/ProdusCard.jsx#L8 | click a checkbox |
-| S5-R3 | delete removes the item | frontend/src/App.jsx#L24, frontend/src/components/ProdusCard.jsx#L34 | click Delete |
-| S5-R4 | header counter derived, not in state | frontend/src/App.jsx#L36 | toggle/delete, watch counter |
-| S5-R5 | immutable updates (no push, splice, assignment) | frontend/src/App.jsx#L18-L26 | read |
-| S5-R6 | light/dark toggle: state + data-theme on html | frontend/src/App.jsx#L28, frontend/src/App.css#L10-L30 | click the button, test both themes |
-| S5-R7 | no console warnings; README + AI log | README.md, ai_log/etapa_5.md | F12, Console |
+| S5-R1 | list kept in useState, in App | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx) | read |
+| S5-R2 | toggling changes state and card look | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx), [`ProdusCard.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusCard.jsx) | click a checkbox |
+| S5-R3 | delete removes the item | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx), [`ProdusCard.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/components/ProdusCard.jsx) | click Delete |
+| S5-R4 | header counter derived, not in state | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx) | toggle/delete, watch counter |
+| S5-R5 | immutable updates (no push, splice, assignment) | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx) | read |
+| S5-R6 | light/dark toggle: state + data-theme on html | [`App.jsx`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.jsx), [`App.css`](https://github.com/marymatei/MotoVault/blob/main/frontend/src/App.css) | click the button, test both themes |
+| S5-R7 | no console warnings; README + AI log | [`README.md`](https://github.com/marymatei/MotoVault/blob/main/README.md), [`ai_log/etapa_5.md`](https://github.com/marymatei/MotoVault/blob/main/ai_log/etapa_5.md) | F12, Console |
 | S5-R8 | commit "Stage 5" pushed | [Commit Stage 5](https://github.com/marymatei/MotoVault/commit/a11e33a14456bde13f3806bd6779523a39142e9e) | commit history |
 
 ## Verification Table - Stage 6
