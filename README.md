@@ -145,3 +145,15 @@ Details per stage: see the `ai_log/` folder.
 | S6-R6 | README Stage 6 section + AI log | README.md, ai_log/etapa_6.md | read |
 | S6-R7 | commit "Stage 6" pushed | [Commit Stage 6](https://github.com/marymatei/MotoVault/commit/9041775) | commit history |
 
+## Verification Table - Stage 7
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S7-R1 | controlled form: value + onChange on every field | [ProductForm.jsx#L48-L74](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/components/ProductForm.jsx#L48-L74) | read |
+| S7-R2 | empty title shows an error, nothing is sent | [ProductForm.jsx#L20-L33](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/components/ProductForm.jsx#L20-L33) | submit empty, watch Network |
+| S7-R3 | added item shows in the list and survives refresh | [App.jsx#L39-L42](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/App.jsx#L39-L42), [api.js#L21-L23](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/api.js#L21-L23) | add, refresh |
+| S7-R4 | toggle and delete survive refresh | [App.jsx#L44-L61](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/App.jsx#L44-L61) | toggle/delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | [ProductForm.jsx#L34-L45](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/components/ProductForm.jsx#L34-L45), [ProductForm.jsx#L80-L82](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/components/ProductForm.jsx#L80-L82) | --delay 3000; stop API and submit |
+| S7-R6 | tw.json and the data-testid attributes from table 7.3 | [tw.json](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/tw.json), [ProdusCard.jsx#L9-L49](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/frontend/src/components/ProdusCard.jsx#L9-L49) | querySelectorAll in the console |
+| S7-R7 | README Stage 7 section + AI log | [README.md](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/README.md), [ai_log/etapa_7.md](https://github.com/marymatei/MotoVault/blob/2c50fc7468cf211c96a9787418c5f4d4a34bbef6/ai_log/etapa_7.md) | read |
+| S7-R8 | commit "Stage 7" pushed | [Commit Stage 7](https://github.com/marymatei/MotoVault/commit/2c50fc7468cf211c96a9787418c5f4d4a34bbef6) | commit history |
