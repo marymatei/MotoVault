@@ -25,6 +25,9 @@ Sample data used across all stages:
 - **Stage 4 (React components)**: Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
 - **Stage 5 (Local state and events)**: Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
 - **Stage 6 (Mock API)**: Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
+- **Stage 7**: form and validation. Products can be added from the page. The form is controlled and validated,
+and every change (add, toggle, delete) goes to the API before it shows up in the list.
+
 
 ## How to run
 
@@ -36,7 +39,7 @@ Sample data used across all stages:
   npm run dev
   ```
   Then open the address printed in the terminal (http://localhost:5173)
-  - **Stage 6**: Open two separate terminals in `frontend/`:
+  - **Stage 6-7**: Open two separate terminals in `frontend/`:
   # Terminal 1 (API Server)
   ```bash
   npm run api
@@ -52,7 +55,7 @@ Sample data used across all stages:
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Architecture mapping, Vite & React setup, component decomposition, React state management, Light/Dark theme implementation |
-| Claude | SVG logo and vector branding generation |
+| Claude | SVG logo and vector branding generation, form, validation steps, ideas |
 
 Details per stage: see the `ai_log/` folder.
 
@@ -64,7 +67,8 @@ Details per stage: see the `ai_log/` folder.
 - [x] Stage 4: React components
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
-- [ ] Stage 7: form and validation
+- [x] Stage 7: form and validation
+- [ ] Stage 8: routing and detail page
 
 ## Verification Table - Stage 1
 
@@ -140,3 +144,4 @@ Details per stage: see the `ai_log/` folder.
 | S6-R5 | fetch only in api.js, URL from env | [frontend/src/api.js](https://github.com/marymatei/MotoVault/blob/main/frontend/src/api.js#L4-L10), [frontend/.env.example](https://github.com/marymatei/MotoVault/blob/main/frontend/.env.example) | search for fetch |
 | S6-R6 | README Stage 6 section + AI log | README.md, ai_log/etapa_6.md | read |
 | S6-R7 | commit "Stage 6" pushed | [Commit Stage 6](https://github.com/marymatei/MotoVault/commit/9041775) | commit history |
+

@@ -19,16 +19,22 @@
       "tag": "Gear"
     },
     {
-      "id": 4,
-      "name": "Motul 300V 10W40 Oil",
-      "available": true,
-      "tag": "Consumables"
-    },
-    {
       "id": 5,
       "name": "Universal Rear Motorcycle Stand",
       "available": false,
       "tag": "Accessories"
+    },
+    {
+      "name": "SEFefa",
+      "tag": "Gear",
+      "available": true,
+      "id": 6
+    },
+    {
+      "name": "aF",
+      "tag": "Gear",
+      "available": true,
+      "id": 7
     }
   ]
 }

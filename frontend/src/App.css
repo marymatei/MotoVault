@@ -770,3 +770,54 @@ canvas {
   position: relative;
   z-index: 2;
 }
+
+
+/* Stage 7: form on the left, list on the right */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stage 7: form fields */
+.product-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.product-form input,
+.product-form select {
+  display: block;
+  width: 100%;
+  margin-top: 0.4rem;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font: inherit;
+}
+
+.product-form .error {
+  margin-bottom: 1rem;
+}
+
+/* Stage 7: button disabled while sending */
+.product-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.product-form input[aria-invalid="true"] {
+  border-color: var(--error-border);
+}

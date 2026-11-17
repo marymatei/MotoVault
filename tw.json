@@ -1,0 +1,6 @@
+{
+  "resource": "products",
+  "title": "name",
+  "done": "available",
+  "sample": { "tag": "Motorcycle" }
+}

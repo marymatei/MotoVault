@@ -6,12 +6,17 @@ export default function ProdusCard({ produs, onToggle, onDelete }) {
   const isMotorcycle = itemTag === "Motorcycle";
 
   return (
-    <article className={isAvailable ? "inventory-card-item" : "inventory-card-item unavailable"}>
+    <article
+      className={isAvailable ? "inventory-card-item" : "inventory-card-item unavailable"}
+      data-testid="item"
+      data-id={produs.id}
+    >
       <label className="card-main">
         <input
           type="checkbox"
           checked={isAvailable}
           onChange={() => onToggle(produs.id)}
+          data-testid="item-toggle"
         />
         <div className="card-icon-box">
           {isMotorcycle ? (
@@ -27,7 +32,7 @@ export default function ProdusCard({ produs, onToggle, onDelete }) {
           )}
         </div>
         <div className="card-info">
-          <h4 className="card-title">{itemName}</h4>
+          <h4 className="card-title" data-testid="item-title">{itemName}</h4>
           <p className="card-category">{itemTag}</p>
         </div>
       </label>
@@ -40,6 +45,7 @@ export default function ProdusCard({ produs, onToggle, onDelete }) {
         className="btn-danger"
         onClick={() => onDelete(produs.id)}
         aria-label={`Delete ${itemName}`}
+        data-testid="item-delete"
       >
         Delete
       </button>

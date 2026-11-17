@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import ProdusList from "./components/ProdusList.jsx";
+import ProductForm from "./components/ProductForm.jsx";
 import Game from "./components/Game.jsx";
 import BackgroundGears from "./components/BackgroundGears.jsx";
-import { fetchProducts } from "./api.js";
+import { createProduct, deleteProduct, fetchProducts, updateProduct } from "./api.js";
 import "./App.css";
 
 function initialTheme() {
@@ -15,23 +16,6 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [theme, setTheme] = useState(initialTheme);
-
-  function handleAdd() {
-    if (!search.trim()) return;
-
-    const newProduct = {
-      id: Date.now(),
-      nume: search.trim(),
-      name: search.trim(),
-      disponibil: true,
-      available: true,
-      categorie: "Gear",
-      tag: "Gear"
-    };
-
-    setProducts((prev) => [newProduct, ...prev]);
-    setSearch("");
-  }
 
   useEffect(() => {
     let ignore = false;
@@ -51,22 +35,29 @@ export default function App() {
     };
   }, []);
 
-  function handleToggle(id) {
-    setProducts((prev) =>
-      prev.map((p) =>
-        p.id === id
-          ? {
-              ...p,
-              disponibil: !(p.disponibil ?? p.available),
-              available: !(p.available ?? p.disponibil)
-            }
-          : p
-      )
-    );
+  // Server first, then state: only what was saved reaches the screen
+  async function handleAdd(product) {
+    const created = await createProduct(product); // the server returns the item with its id
+    setProducts((prev) => [...prev, created]);
   }
 
-  function handleDelete(id) {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+  async function handleToggle(id) {
+    const product = products.find((p) => p.id === id);
+    try {
+      const updated = await updateProduct(id, { available: !product.available });
+      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      await deleteProduct(id);
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   function handleTheme() {
@@ -134,7 +125,17 @@ export default function App() {
 
       {/* Inventory Section */}
       <section className="inventory-section" id="inventory">
-        <div className="inventory-container">
+        <div className="inventory-container container">
+          <div className="inventory-preview-card">
+            <div className="preview-header">
+              <div>
+                <h3>Add product</h3>
+                <span className="preview-subtitle">New item in stock</span>
+              </div>
+            </div>
+            <ProductForm onAdd={handleAdd} />
+          </div>
+
           <div className="inventory-preview-card">
             <div className="preview-header">
               <div>
@@ -143,24 +144,13 @@ export default function App() {
               </div>
             </div>
 
-            <div className="preview-search" style={{ display: "flex", gap: "10px", marginBottom: "1.25rem" }}>
-              <input 
-                type="text" 
-                placeholder="Search or type new product name..." 
+            <div className="preview-search">
+              <input
+                type="text"
+                placeholder="Search products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-                style={{ marginBottom: 0 }}
               />
-              <button 
-                type="button"
-                className="btn-primary"
-                onClick={handleAdd}
-                title="Add product"
-                style={{ padding: "0 1.25rem", fontSize: "1.3rem", fontWeight: "bold", cursor: "pointer" }}
-              >
-                +
-              </button>
             </div>
 
             <div className="preview-stats">
@@ -178,13 +168,17 @@ export default function App() {
               </div>
             </div>
 
-            {loading && <p className="info" style={{ padding: "16px" }}>Loading products...</p>}
-            {error && (
-              <p className="error" style={{ margin: "16px" }}>
-                Could not load data: {error}. Did you run <code>npm run api</code>?
+            {loading && (
+              <p className="info" style={{ padding: "16px" }} data-testid="loading">
+                Loading products...
               </p>
             )}
-            {!loading && !error && (
+            {error && (
+              <p className="error" style={{ margin: "16px 0" }} data-testid="error">
+                Server problem: {error}. Did you run <code>npm run api</code>?
+              </p>
+            )}
+            {!loading && (
               <ProdusList
                 produse={filteredProducts}
                 onToggle={handleToggle}

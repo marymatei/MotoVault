@@ -2,7 +2,11 @@ import ProdusCard from "./ProdusCard.jsx";
 
 export default function ProdusList({ produse, onToggle, onDelete }) {
   if (!produse || produse.length === 0) {
-    return <p className="empty-state">No items in stock.</p>;
+    return (
+      <p className="empty-state" data-testid="empty">
+        No items in stock.
+      </p>
+    );
   }
 
   return (
