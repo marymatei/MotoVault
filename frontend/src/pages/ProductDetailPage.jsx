@@ -65,11 +65,16 @@ export default function ProductDetailPage() {
       >
         {product.name}
       </h2>
+      {product.photo && (
+        <img src={product.photo} alt={product.name} className={styles.photo} />
+      )}
       <dl className={styles.fields}>
         <dt>Tag</dt>
         <dd>{TAG_LABELS[product.tag] ?? product.tag}</dd>
         <dt>Status</dt>
         <dd>{product.available ? "Available" : "Unavailable"}</dd>
+        <dt>Quantity</dt>
+        <dd>{product.quantity ?? 0}</dd>
         <dt>ID</dt>
         <dd>{product.id}</dd>
       </dl>

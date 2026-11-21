@@ -32,3 +32,13 @@
   font-weight: 600;
   color: var(--muted);
 }
+
+/* Shown smaller only to fit the page; the saved photo keeps its full quality */
+.photo {
+  display: block;
+  max-width: 100%;
+  max-height: 360px;
+  margin-bottom: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}

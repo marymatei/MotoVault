@@ -116,3 +116,14 @@
     gap: 0.5rem;
   }
 }
+
+/* Photo error: visible 3 seconds, then fades out in 0.5 seconds */
+.fadeOut {
+  animation: fadeOut 0.5s ease 3s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}

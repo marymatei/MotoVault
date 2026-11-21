@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ProdusList from "../components/ProdusList.jsx";
 import ProductForm from "../components/ProductForm.jsx";
 import Game from "../components/Game.jsx";
+import PhotoModal from "../components/PhotoModal.jsx";
+import { readPhoto } from "../photo.js";
 import { createProduct, deleteProduct, fetchProducts, updateProduct } from "../api.js";
 import styles from "./ProductsPage.module.css";
 
@@ -11,6 +13,8 @@ export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [photoError, setPhotoError] = useState("");
+  const [viewingId, setViewingId] = useState(null);
 
   useEffect(() => {
     let ignore = false;
@@ -46,6 +50,47 @@ export default function ProductsPage() {
     }
   }
 
+  // + and -: 0 pieces makes the product unavailable, the first piece makes it available again
+  async function handleQuantity(id, delta) {
+    const product = products.find((p) => p.id === id);
+    const current = product.quantity ?? 0;
+    const next = Math.max(0, current + delta);
+    if (next === current) return;
+    const changes = { quantity: next };
+    if (next === 0) changes.available = false;
+    if (current === 0 && next > 0) changes.available = true;
+    try {
+      const updated = await updateProduct(id, changes);
+      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  // Photo error from a card or the popup: stays 3 seconds, fades out, disappears
+  useEffect(() => {
+    if (!photoError) return;
+    const timer = setTimeout(() => setPhotoError(""), 3500);
+    return () => clearTimeout(timer);
+  }, [photoError]);
+
+  // A photo added from a card or changed in the popup: checked, then saved on the server
+  async function handlePhoto(id, file) {
+    let photo;
+    try {
+      photo = await readPhoto(file);
+    } catch (err) {
+      setPhotoError(err.message);
+      return;
+    }
+    try {
+      const updated = await updateProduct(id, { photo });
+      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   async function handleDelete(id) {
     try {
       await deleteProduct(id);
@@ -54,6 +99,8 @@ export default function ProductsPage() {
       setError(err.message);
     }
   }
+
+  const viewingProduct = products.find((p) => p.id === viewingId && p.photo);
 
   const filteredProducts = products.filter((p) =>
     (p.name || "").toLowerCase().includes(search.toLowerCase())
@@ -123,17 +170,33 @@ export default function ProductsPage() {
               Server problem: {error}. Did you run <code>npm run api</code>?
             </p>
           )}
+          {photoError && (
+            <p key={photoError} className={`error ${styles.message} ${styles.fadeOut}`} role="alert">
+              {photoError}
+            </p>
+          )}
           {!loading && (
             <ProdusList
               produse={filteredProducts}
               onToggle={handleToggle}
               onDelete={handleDelete}
+              onQuantity={handleQuantity}
+              onPhoto={handlePhoto}
+              onOpenPhoto={setViewingId}
             />
           )}
         </section>
       </div>
 
       <Game />
+
+      {viewingProduct && (
+        <PhotoModal
+          product={viewingProduct}
+          onClose={() => setViewingId(null)}
+          onChangePhoto={handlePhoto}
+        />
+      )}
     </>
   );
 }

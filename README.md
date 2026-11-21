@@ -9,6 +9,8 @@ MotoVault is a specialized inventory management system for motorcycle dealership
 | name | text | required, item make and model, max 100 chars |
 | isSold | boolean | toggled from the list, default false (Available vs Sold) |
 | itemType | fixed values | Motorcycle, Gear, Accessory |
+| quantity | number | pieces in stock, changed with - / +; 0 makes the item unavailable |
+| photo | image | optional; JPG, PNG or WEBP, 200–4000 px, max 3 MB; saved unchanged in db.json |
 | category | relation | Naked, Sport, Touring, Protective |
 | user | relation | store manager / inventory operator (from week 11) |
 
@@ -59,7 +61,7 @@ and an about page, plus a 404 page. Component styles moved to CSS Modules.
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Architecture mapping, Vite & React setup, component decomposition, React state management, Light/Dark theme implementation |
-| Claude | SVG logo and vector branding generation, form, validation steps, ideas, routing |
+| Claude | SVG logo, vector branding generation, form, validation steps, ideas, routing, stock quantity |
 
 Details per stage: see the [`ai_log/`](ai_log/) folder.
 

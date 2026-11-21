@@ -1,7 +1,7 @@
 import ProdusCard from "./ProdusCard.jsx";
 import styles from "./ProdusList.module.css";
 
-export default function ProdusList({ produse, onToggle, onDelete }) {
+export default function ProdusList({ produse, onToggle, onDelete, onQuantity, onPhoto, onOpenPhoto }) {
   if (!produse || produse.length === 0) {
     return (
       <p className="empty-state" data-testid="empty">
@@ -18,6 +18,9 @@ export default function ProdusList({ produse, onToggle, onDelete }) {
           produs={produs}
           onToggle={onToggle}
           onDelete={onDelete}
+          onQuantity={onQuantity}
+          onPhoto={onPhoto}
+          onOpenPhoto={onOpenPhoto}
         />
       ))}
     </ul>
