@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import styles from "./Game.module.css";
 
 const OBSTACLES = [
   { icon: "🛢️", name: "Oil Spill" },
@@ -19,7 +20,7 @@ export default function Game() {
   const [distance, setDistance] = useState(0);
   const [speed, setSpeed] = useState(50);
   const [lives, setLives] = useState(3);
-  const [highScore, setHighScore] = useState(0);
+  const [, setHighScore] = useState(0);
 
   const gameRef = useRef({
     lane: 0,
@@ -238,42 +239,42 @@ export default function Game() {
   }, [gameState]);
 
   return (
-    <section className="game-section" id="arcade">
-      <div className="game-container">
-        <div className="game-header">
+    <section className={styles.section} id="arcade">
+      <div className={`panel ${styles.container}`}>
+        <div className={styles.header}>
           <div>
-            <span className="hero-tagline">ARCADE</span>
+            <span className="tagline">ARCADE</span>
             <h2 className="section-title">Grand Prix 🏍️🏁</h2>
             <p className="section-subtitle">
               Use <strong>A / D</strong> or <strong>Left / Right Arrows</strong> to switch lanes. Collect bonuses and avoid obstacles!
             </p>
           </div>
 
-          <div className="game-scoreboard">
-            <div className="score-box">
-              <span className="score-label">SPEED</span>
-              <span className="score-value green">{speed} km/h</span>
+          <div className={styles.scoreboard}>
+            <div className={styles.scoreBox}>
+              <span className={styles.scoreLabel}>SPEED</span>
+              <span className={`${styles.scoreValue} ${styles.green}`}>{speed} km/h</span>
             </div>
-            <div className="score-box">
-              <span className="score-label">DISTANCE</span>
-              <span className="score-value yellow">{distance} m</span>
+            <div className={styles.scoreBox}>
+              <span className={styles.scoreLabel}>DISTANCE</span>
+              <span className={`${styles.scoreValue} ${styles.yellow}`}>{distance} m</span>
             </div>
-            <div className="score-box">
-              <span className="score-label">SCORE</span>
-              <span className="score-value white">{score}</span>
+            <div className={styles.scoreBox}>
+              <span className={styles.scoreLabel}>SCORE</span>
+              <span className={`${styles.scoreValue} ${styles.white}`}>{score}</span>
             </div>
-            <div className="score-box">
-              <span className="score-label">LIVES</span>
-              <span className="score-value red">{"❤️".repeat(Math.max(0, lives))}</span>
+            <div className={styles.scoreBox}>
+              <span className={styles.scoreLabel}>LIVES</span>
+              <span className={`${styles.scoreValue} ${styles.red}`}>{"❤️".repeat(Math.max(0, lives))}</span>
             </div>
           </div>
         </div>
 
-        <div className="canvas-wrapper">
-          <canvas ref={canvasRef} width={800} height={420} className="game-canvas" />
+        <div className={styles.canvasWrapper}>
+          <canvas ref={canvasRef} width={800} height={420} className={styles.canvas} />
 
           {gameState === "idle" && (
-            <div className="game-overlay">
+            <div className={styles.overlay}>
               <h3>Ready to Race in 3D?</h3>
               <p>Controls: <strong>A / D</strong> or <strong>Left / Right Arrow Keys</strong></p>
               <button className="btn-primary" onClick={startGame}>
@@ -283,8 +284,8 @@ export default function Game() {
           )}
 
           {gameState === "gameover" && (
-            <div className="game-overlay">
-              <h3 className="danger-text">CRASHED! 💥</h3>
+            <div className={styles.overlay}>
+              <h3 className={styles.danger}>CRASHED! 💥</h3>
               <p>Distance: <strong>{distance} m</strong> | Total Score: <strong>{score + distance}</strong></p>
               <button className="btn-primary" onClick={startGame}>
                 Re-enter Race 🔄

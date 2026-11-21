@@ -1,0 +1,154 @@
+.title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.text {
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.metrics {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metricNumber {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.metric h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.metric p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.block {
+  position: relative;
+  z-index: 2;
+  padding-top: 4rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.feature {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+.icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  background-color: var(--accent);
+  color: var(--btn-text);
+}
+
+.feature h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.step {
+  border-top: 2px solid var(--accent);
+  padding-top: 1rem;
+}
+
+.stepNum {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cta {
+  text-align: center;
+  padding: 3.5rem 2rem;
+}
+
+.cta h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.cta p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 800px) {
+  .metrics,
+  .features,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,13 +9,13 @@
     {
       "id": 2,
       "name": "Alpinestars GP Pro Gloves",
-      "available": false,
+      "available": true,
       "tag": "Protection"
     },
     {
       "id": 3,
       "name": "Dainese Racing 4 Jacket",
-      "available": true,
+      "available": false,
       "tag": "Gear"
     },
     {
@@ -25,16 +25,46 @@
       "tag": "Accessories"
     },
     {
-      "name": "SEFefa",
-      "tag": "Gear",
+      "name": "Honda CB600F Hornet",
+      "tag": "Motorcycle",
       "available": true,
-      "id": 6
+      "id": 8
     },
     {
-      "name": "aF",
+      "name": "Yamaha MT-07",
+      "tag": "Motorcycle",
+      "available": true,
+      "id": 9
+    },
+    {
+      "name": "AGV K6 S Full Face Helmet",
       "tag": "Gear",
       "available": true,
-      "id": 7
+      "id": 10
+    },
+    {
+      "name": "Dainese Back Protector G2",
+      "tag": "Protection",
+      "available": true,
+      "id": 11
+    },
+    {
+      "name": "Oxford Disc Lock",
+      "tag": "Accessories",
+      "available": true,
+      "id": 12
+    },
+    {
+      "name": "Motul 300V 10W40 Oil",
+      "tag": "Consumables",
+      "available": true,
+      "id": 13
+    },
+    {
+      "name": "Michelin Road 6 Rear Tire",
+      "tag": "Consumables",
+      "available": true,
+      "id": 14
     }
   ]
 }

@@ -1,17 +1,11 @@
 import { useState } from "react";
+import { TAGS } from "../constants.js";
+import styles from "./ProductForm.module.css";
 
-// Fixed values for the product tag
-const TAGS = [
-  { value: "Motorcycle", label: "Motorcycle" },
-  { value: "Gear", label: "Gear" },
-  { value: "Protection", label: "Protection" },
-  { value: "Accessories", label: "Accessories" },
-  { value: "Consumables", label: "Consumables" },
-];
 const NAME_MAX = 100;
 
 // Controlled form: React state is the source of truth for the fields
-export default function ProductForm({ onAdd }) {
+export default function ProductForm({ onAdd, existingNames = [] }) {
   const [name, setName] = useState("");
   const [tag, setTag] = useState("Gear");
   const [formError, setFormError] = useState("");
@@ -21,6 +15,9 @@ export default function ProductForm({ onAdd }) {
     const n = name.trim();
     if (n === "") return "Product name is required.";
     if (n.length > NAME_MAX) return `Product name can have at most ${NAME_MAX} characters.`;
+        if (existingNames.some((x) => x.trim().toLowerCase() === n.toLowerCase())) {
+      return "This product is already in the inventory.";
+    }
     return "";
   }
 
@@ -45,7 +42,7 @@ export default function ProductForm({ onAdd }) {
   }
 
   return (
-    <form className="product-form" onSubmit={handleSubmit} noValidate data-testid="form">
+    <form className={styles.form} onSubmit={handleSubmit} noValidate data-testid="form">
       <label>
         Product name
         <input

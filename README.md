@@ -27,6 +27,10 @@ Sample data used across all stages:
 - **Stage 6 (Mock API)**: Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
 - **Stage 7**: form and validation. Products can be added from the page. The form is controlled and validated,
 and every change (add, toggle, delete) goes to the API before it shows up in the list.
+- **Stage 8**: routing and detail page
+Three pages behind React Router: the list, a detail page at `/products/:id`,
+and an about page, plus a 404 page. Component styles moved to CSS Modules.
+
 
 
 ## How to run
@@ -39,7 +43,7 @@ and every change (add, toggle, delete) goes to the API before it shows up in the
   npm run dev
   ```
   Then open the address printed in the terminal (http://localhost:5173)
-  - **Stage 6-7**: Open two separate terminals in `frontend/`:
+  - **Stage 6-8**: Open two separate terminals in `frontend/`:
   # Terminal 1 (API Server)
   ```bash
   npm run api
@@ -55,7 +59,7 @@ and every change (add, toggle, delete) goes to the API before it shows up in the
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Architecture mapping, Vite & React setup, component decomposition, React state management, Light/Dark theme implementation |
-| Claude | SVG logo and vector branding generation, form, validation steps, ideas |
+| Claude | SVG logo and vector branding generation, form, validation steps, ideas, routing |
 
 Details per stage: see the [`ai_log/`](ai_log/) folder.
 
@@ -68,7 +72,8 @@ Details per stage: see the [`ai_log/`](ai_log/) folder.
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
-- [ ] Stage 8: routing and detail page
+- [x] Stage 8: routing and detail page
+- [ ] Stage 9: own backend with Express
 
 ## Verification Table - Stage 1
 

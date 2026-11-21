@@ -1,0 +1,91 @@
+.card {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(192, 57, 43, 0.15);
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex: none;
+}
+
+.iconBox {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.title:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.category {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.available {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--btn-text);
+}
+
+/* On phones the status and the Delete button go under the name */
+@media (max-width: 520px) {
+  .main {
+    flex-basis: 100%;
+  }
+}

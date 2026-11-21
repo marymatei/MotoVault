@@ -1,0 +1,118 @@
+.hero {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--text);
+  margin: 1rem 0 1.25rem;
+}
+
+.highlight {
+  color: var(--accent);
+}
+
+.heroText {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2.25rem;
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Form on the left, list on the right */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  align-items: start;
+  scroll-margin-top: 6rem;
+}
+
+.grid > * {
+  min-width: 0;
+}
+
+.panelTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.panelSubtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.search {
+  width: 100%;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font: inherit;
+  margin-bottom: 1.25rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statBox {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.statName {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.38rem;
+}
+
+.statNum {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: 2.3rem;
+  }
+
+  .stats {
+    gap: 0.5rem;
+  }
+}

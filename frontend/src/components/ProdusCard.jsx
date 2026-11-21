@@ -1,24 +1,25 @@
+import { Link } from "react-router-dom";
+import { TAG_LABELS } from "../constants.js";
+import styles from "./ProdusCard.module.css";
+
 export default function ProdusCard({ produs, onToggle, onDelete }) {
-  // Extract values with English fallbacks matching db.json fields
-  const itemName = produs.name || produs.nume || "Product";
-  const itemTag = produs.tag || produs.category || produs.categorie || "Gear";
-  const isAvailable = produs.available ?? produs.disponibil ?? true;
-  const isMotorcycle = itemTag === "Motorcycle";
+  const isMotorcycle = produs.tag === "Motorcycle";
 
   return (
-    <article
-      className={isAvailable ? "inventory-card-item" : "inventory-card-item unavailable"}
+    <li
+      className={produs.available ? styles.card : `${styles.card} ${styles.unavailable}`}
       data-testid="item"
       data-id={produs.id}
     >
-      <label className="card-main">
+      <div className={styles.main}>
         <input
           type="checkbox"
-          checked={isAvailable}
+          checked={produs.available}
           onChange={() => onToggle(produs.id)}
+          aria-label={`Mark ${produs.name} as available`}
           data-testid="item-toggle"
         />
-        <div className="card-icon-box">
+        <div className={styles.iconBox}>
           {isMotorcycle ? (
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="5.5" cy="17.5" r="3.5" />
@@ -31,24 +32,26 @@ export default function ProdusCard({ produs, onToggle, onDelete }) {
             </svg>
           )}
         </div>
-        <div className="card-info">
-          <h4 className="card-title" data-testid="item-title">{itemName}</h4>
-          <p className="card-category">{itemTag}</p>
+        <div className={styles.info}>
+          <Link to={`/products/${produs.id}`} className={styles.title} data-testid="item-link">
+            {produs.name}
+          </Link>
+          <p className={styles.category}>{TAG_LABELS[produs.tag] ?? produs.tag}</p>
         </div>
-      </label>
+      </div>
 
-      <span className={isAvailable ? "status-pill available" : "status-pill unavailable"}>
-        {isAvailable ? "Available" : "Unavailable"}
+      <span className={produs.available ? `${styles.pill} ${styles.available}` : styles.pill}>
+        {produs.available ? "Available" : "Unavailable"}
       </span>
 
       <button
         className="btn-danger"
         onClick={() => onDelete(produs.id)}
-        aria-label={`Delete ${itemName}`}
+        aria-label={`Delete ${produs.name}`}
         data-testid="item-delete"
       >
         Delete
       </button>
-    </article>
+    </li>
   );
 }

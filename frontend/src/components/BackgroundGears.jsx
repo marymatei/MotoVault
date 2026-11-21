@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import styles from "./BackgroundGears.module.css";
 
 export default function BackgroundGears() {
   const canvasRef = useRef(null);
@@ -140,17 +141,6 @@ export default function BackgroundGears() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        pointerEvents: "none",
-        zIndex: 0,
-      }}
-    />
+    <canvas ref={canvasRef} className={styles.canvas} />
   );
 }

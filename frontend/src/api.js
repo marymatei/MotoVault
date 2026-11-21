@@ -18,6 +18,10 @@ export function fetchProducts() {
   return request("/products");
 }
 
+export function fetchProduct(id) {
+  return request(`/products/${id}`);
+}
+
 export function createProduct(product) {
   return request("/products", { method: "POST", body: JSON.stringify(product) });
 }

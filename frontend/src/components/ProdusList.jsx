@@ -1,4 +1,5 @@
 import ProdusCard from "./ProdusCard.jsx";
+import styles from "./ProdusList.module.css";
 
 export default function ProdusList({ produse, onToggle, onDelete }) {
   if (!produse || produse.length === 0) {
@@ -10,7 +11,7 @@ export default function ProdusList({ produse, onToggle, onDelete }) {
   }
 
   return (
-    <div className="inventory-cards-list">
+    <ul className={styles.list}>
       {produse.map((produs) => (
         <ProdusCard
           key={produs.id}
@@ -19,6 +20,6 @@ export default function ProdusList({ produse, onToggle, onDelete }) {
           onDelete={onDelete}
         />
       ))}
-    </div>
+    </ul>
   );
 }

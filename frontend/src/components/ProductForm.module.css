@@ -1,0 +1,28 @@
+.form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.form input,
+.form select {
+  display: block;
+  width: 100%;
+  margin-top: 0.4rem;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font: inherit;
+}
+
+.form input[aria-invalid="true"] {
+  border-color: var(--error-border);
+}
+
+.form p {
+  margin-bottom: 1rem;
+}
