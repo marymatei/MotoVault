@@ -15,9 +15,9 @@ MotoVault is a specialized inventory management system for motorcycle dealership
 | user | relation | store manager / inventory operator (from week 11) |
 
 Sample data used across all stages:
-1. Honda CB600F Hornet, active, Motorcycle
-2. Casca Integrala AGV K6 S, done, Gear
-3. Yamaha MT-07, active, Motorcycle
+1. Honda CB600F Hornet, available, Motorcycle
+2. AGV K6 S Full Face Helmet, unavailable (sold), Gear
+3. Yamaha MT-07, available, Motorcycle
 
 ## Stages summary
 
@@ -33,10 +33,10 @@ Decomposed interface into reusable React components (`ProdusList` and `ProdusCar
 Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
 ### Stage 6 (Mock API)
 Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
-### Stage 7
+### Stage 7 (Form and validation)
 form and validation. Products can be added from the page. The form is controlled and validated,
 and every change (add, toggle, delete) goes to the API before it shows up in the list.
-### Stage 8
+### Stage 8 (Routing and detail page)
 routing and detail page
 Three pages behind React Router: the list, a detail page at `/products/:id`,
 and an about page, plus a 404 page. Component styles moved to CSS Modules.
