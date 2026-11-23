@@ -6,9 +6,9 @@ MotoVault is a specialized inventory management system for motorcycle dealership
 
 | Field | Type | Notes |
 | :--- | :--- | :--- |
-| name | text | required, item make and model, max 100 chars |
-| isSold | boolean | toggled from the list, default false (Available vs Sold) |
-| itemType | fixed values | Motorcycle, Gear, Accessory |
+| name | text | required, item make and model, max 100 chars, no duplicates |
+| available | boolean | toggled from the list; true = Available, false = Unavailable |
+| tag | fixed values | Motorcycle, Gear, Protection, Accessories, Consumables |
 | quantity | number | pieces in stock, changed with - / +; 0 makes the item unavailable |
 | photo | image | optional; JPG, PNG or WEBP, 200–4000 px, max 3 MB; saved unchanged in db.json |
 | category | relation | Naked, Sport, Touring, Protective |
@@ -21,15 +21,23 @@ Sample data used across all stages:
 
 ## Stages summary
 
-- **Stage 1 (Static mockup)**: Semantic HTML structure and custom dark theme CSS layout on 2 columns.
-- **Stage 2 (Data logic)**: Plain JavaScript, no DOM. `mockup/produse.js` holds the array and immutable functions (add, filter, toggle, count). Results printed in the browser console (F12).
-- **Stage 3 (Vite and React project)**: Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
-- **Stage 4 (React components)**: Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
-- **Stage 5 (Local state and events)**: Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
-- **Stage 6 (Mock API)**: Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
-- **Stage 7**: form and validation. Products can be added from the page. The form is controlled and validated,
+### Stage 1 (Static mockup)
+Semantic HTML structure and custom dark theme CSS layout on 2 columns.
+### Stage 2 (Data logic)
+Plain JavaScript, no DOM. `mockup/produse.js` holds the array and immutable functions (add, filter, toggle, count). Results printed in the browser console (F12).
+### Stage 3 (Vite and React project)
+Migrated to Vite + React inside `frontend/`. Data moved to `App.jsx`, counters computed dynamically, and the inventory list is printed raw as JSON per assignment requirements.
+### Stage 4 (React components)
+Decomposed interface into reusable React components (`ProdusList` and `ProdusCard`) driven by props, `.map()` iteration with unique keys, and conditional empty state handling.
+### Stage 5 (Local state and events)
+Maintained inventory state using `useState` in `App.jsx`, added interactive toggle and delete handlers, derived counters, and implemented a Light/Dark mode switcher via CSS data attributes.
+### Stage 6 (Mock API)
+Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
+### Stage 7
+form and validation. Products can be added from the page. The form is controlled and validated,
 and every change (add, toggle, delete) goes to the API before it shows up in the list.
-- **Stage 8**: routing and detail page
+### Stage 8
+routing and detail page
 Three pages behind React Router: the list, a detail page at `/products/:id`,
 and an about page, plus a 404 page. Component styles moved to CSS Modules.
 
@@ -46,11 +54,11 @@ and an about page, plus a 404 page. Component styles moved to CSS Modules.
   ```
   Then open the address printed in the terminal (http://localhost:5173)
   - **Stage 6-8**: Open two separate terminals in `frontend/`:
-  # Terminal 1 (API Server)
+  ### Terminal 1 (API Server)
   ```bash
   npm run api
   ```
-  # Terminal 2 (Vite Frontend)
+  ### Terminal 2 (Vite Frontend)
   ```bash
   npm run dev
   ```

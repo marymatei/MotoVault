@@ -267,3 +267,11 @@ footer {
     gap: 24px;
   }
 }
+
+/* Message for an empty list */
+.empty {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 24px 0;
+}

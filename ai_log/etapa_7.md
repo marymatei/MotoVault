@@ -4,7 +4,7 @@
 - Claude
 
 ## Conversations
-- Stage 7: form and validation (link: PASTE_THE_SHARE_LINK_HERE)
+- Stage 7: form and validation
 
 ## Key requests
 
