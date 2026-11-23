@@ -34,10 +34,9 @@ Maintained inventory state using `useState` in `App.jsx`, added interactive togg
 ### Stage 6 (Mock API)
 Served list from `db.json` via `json-server`. Fetched data asynchronously on load with `useEffect` using a cleanup flag, and handled loading and error states.
 ### Stage 7 (Form and validation)
-form and validation. Products can be added from the page. The form is controlled and validated,
+Products can be added from the page. The form is controlled and validated,
 and every change (add, toggle, delete) goes to the API before it shows up in the list.
 ### Stage 8 (Routing and detail page)
-routing and detail page
 Three pages behind React Router: the list, a detail page at `/products/:id`,
 and an about page, plus a 404 page. Component styles moved to CSS Modules.
 

@@ -13,6 +13,24 @@
   --badge-moto: #d4ff32;
   --badge-gear: #38bdf8;
   --status-active: #4ade80;
+  /* All the other colors used below */
+  --bg-deep-end: #0d0f15;
+  --accent-tint: rgba(212, 255, 50, 0.05);
+  --accent-soft: rgba(212, 255, 50, 0.12);
+  --accent-line: rgba(212, 255, 50, 0.25);
+  --accent-shadow: rgba(212, 255, 50, 0.3);
+  --accent-glow-strong: rgba(212, 255, 50, 0.45);
+  --shadow-dark: rgba(0, 0, 0, 0.6);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
+  --shadow-strong: rgba(0, 0, 0, 0.7);
+  --input-bg: rgba(9, 11, 16, 0.85);
+  --card-bg: rgba(14, 17, 24, 0.7);
+  --done-bg: rgba(10, 12, 17, 0.5);
+  --done-border: rgba(255, 255, 255, 0.03);
+  --done-border-hover: rgba(255, 255, 255, 0.06);
+  --button-text: #0b0c10;
+  --footer-text: #cbd5e1;
+  --logo-glow: rgba(212, 255, 50, 0.4);
 }
 
 * {
@@ -26,8 +44,8 @@ body {
   background-color: var(--bg-deep);
   background-image: 
     radial-gradient(circle at 15% 15%, var(--titanium-tint) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(212, 255, 50, 0.05) 0%, transparent 40%),
-    linear-gradient(180deg, #08090c 0%, #0d0f15 100%);
+    radial-gradient(circle at 85% 75%, var(--accent-tint) 0%, transparent 40%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-deep-end) 100%);
   color: var(--text-pure);
   min-height: 100vh;
   padding: 48px 20px;
@@ -45,7 +63,7 @@ header {
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--border-glass);
   border-radius: 20px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 48px var(--shadow-dark);
   position: relative;
 }
 
@@ -66,7 +84,7 @@ header h1 {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-pure);
-  text-shadow: 0 0 24px rgba(212, 255, 50, 0.3);
+  text-shadow: 0 0 24px var(--accent-shadow);
   margin-bottom: 8px;
 }
 
@@ -94,7 +112,7 @@ form, .inventory-container, section {
   border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 28px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 45px var(--shadow-medium);
 }
 
 h2 {
@@ -132,7 +150,7 @@ label {
 input[type="text"], select {
   width: 100%;
   padding: 13px 15px;
-  background: rgba(9, 11, 16, 0.85);
+  background: var(--input-bg);
   border: 1px solid var(--border-glass);
   border-radius: 12px;
   color: var(--text-pure);
@@ -152,7 +170,7 @@ button {
   margin-top: 26px;
   padding: 14px;
   background: var(--accent-rare);
-  color: #0b0c10;
+  color: var(--button-text);
   border: none;
   border-radius: 12px;
   font-size: 0.95rem;
@@ -166,7 +184,7 @@ button {
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(212, 255, 50, 0.45);
+  box-shadow: 0 14px 32px var(--accent-glow-strong);
   filter: brightness(1.08);
 }
 
@@ -177,7 +195,7 @@ button:active {
 /* Carduri de inventar */
 .card, article, .item-card {
   position: relative;
-  background: rgba(14, 17, 24, 0.7);
+  background: var(--card-bg);
   border: 1px solid var(--border-glass);
   border-radius: 16px;
   padding: 22px;
@@ -194,7 +212,7 @@ button:active {
   transform: translateY(-4px) scale(1.01);
   background: var(--bg-surface-hover);
   border-color: var(--border-active);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7), 0 0 22px rgba(212, 255, 50, 0.12);
+  box-shadow: 0 14px 34px var(--shadow-strong), 0 0 22px var(--accent-soft);
 }
 
 .card h3, article h3, .item-card h3 {
@@ -213,9 +231,9 @@ button:active {
   letter-spacing: 0.9px;
   padding: 4px 11px;
   border-radius: 100px;
-  background: rgba(212, 255, 50, 0.12);
+  background: var(--accent-soft);
   color: var(--accent-rare);
-  border: 1px solid rgba(212, 255, 50, 0.25);
+  border: 1px solid var(--accent-line);
 }
 
 /* Text status disponibilitate */
@@ -230,8 +248,8 @@ button:active {
 /* Produs vândut - Cerința S1-R5 */
 .done, .sold {
   opacity: 0.45;
-  background: rgba(10, 12, 17, 0.5);
-  border-color: rgba(255, 255, 255, 0.03);
+  background: var(--done-bg);
+  border-color: var(--done-border);
 }
 
 .done h3, .sold h3 {
@@ -242,7 +260,7 @@ button:active {
 .done:hover, .sold:hover {
   transform: none;
   box-shadow: none;
-  border-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--done-border-hover);
 }
 
 footer {
@@ -274,4 +292,25 @@ footer {
   font-style: italic;
   text-align: center;
   padding: 24px 0;
+}
+
+/* Footer with the logo (moved here from inline styles) */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 50px;
+}
+
+.site-footer img {
+  filter: drop-shadow(0 0 10px var(--logo-glow));
+}
+
+.site-footer span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--footer-text);
+  text-transform: uppercase;
 }

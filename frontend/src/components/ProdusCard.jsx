@@ -3,8 +3,74 @@ import { TAG_LABELS } from "../constants.js";
 import { PHOTO_TYPES } from "../photo.js";
 import styles from "./ProdusCard.module.css";
 
+// A different line icon for every tag (same size and style for all)
+function TagIcon({ tag }) {
+  const common = {
+    viewBox: "0 0 24 24",
+    width: 20,
+    height: 20,
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": true,
+  };
+
+  if (tag === "Motorcycle") {
+    return (
+      <svg {...common}>
+        <circle cx="5.5" cy="17.5" r="3.5" />
+        <circle cx="18.5" cy="17.5" r="3.5" />
+        <path d="M15 6h2l3 5v4M9 17.5l2.5-6h4.5M12 11.5L9.5 6H5" />
+      </svg>
+    );
+  }
+  if (tag === "Gear") {
+    // helmet
+    return (
+      <svg {...common}>
+        <path d="M3 16a9 9 0 0 1 18 0v2H3z" />
+        <path d="M12 7v5h9" />
+      </svg>
+    );
+  }
+  if (tag === "Protection") {
+    // shield
+    return (
+      <svg {...common}>
+        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    );
+  }
+  if (tag === "Accessories") {
+    // padlock
+    return (
+      <svg {...common}>
+        <rect x="5" y="11" width="14" height="10" rx="2" />
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+      </svg>
+    );
+  }
+  if (tag === "Consumables") {
+    // oil drop
+    return (
+      <svg {...common}>
+        <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" />
+      </svg>
+    );
+  }
+  // any other tag: a box
+  return (
+    <svg {...common}>
+      <path d="M21 8 12 3 3 8v8l9 5 9-5V8z" />
+      <path d="M3 8l9 5 9-5M12 13v8" />
+    </svg>
+  );
+}
+
 export default function ProdusCard({ produs, onToggle, onDelete, onQuantity, onPhoto, onOpenPhoto }) {
-  const isMotorcycle = produs.tag === "Motorcycle";
   const quantity = produs.quantity ?? 0;
 
   return (
@@ -58,17 +124,7 @@ export default function ProdusCard({ produs, onToggle, onDelete, onQuantity, onP
         )}
         <div className={styles.iconCol}>
           <div className={styles.iconBox}>
-            {isMotorcycle ? (
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="5.5" cy="17.5" r="3.5" />
-                <circle cx="18.5" cy="17.5" r="3.5" />
-                <path d="M15 6h2l3 5v4M9 17.5l2.5-6h4.5M12 11.5L9.5 6H5" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
-              </svg>
-            )}
+            <TagIcon tag={produs.tag} />
           </div>
           <p className={styles.category}>{TAG_LABELS[produs.tag] ?? produs.tag}</p>
         </div>
