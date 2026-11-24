@@ -3,9 +3,6 @@
 ## Tools
 - Gemini
 
-## Conversations
-- MotoVault UI Mockup and Project Setup (Theme definition, HTML semantic structure, CSS responsive layout)
-
 ## Key requests
 
 ### 1. Project theme and data structure adaptation

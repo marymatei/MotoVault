@@ -3,9 +3,6 @@
 ## Tools
 - Gemini
 
-## Conversations
-- React local state management with useState, handler functions for immutable state updates, event propagation via props, controlled form components (checkboxes), accessible action buttons, and dynamic theme switching using CSS data attributes.
-
 ## Key requests
 
 ### 1. Local state setup & immutable handlers

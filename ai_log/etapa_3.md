@@ -4,9 +4,6 @@
 - Gemini
 - Claude (for visual asset and SVG logo generation)
 
-## Conversations
-- Vite and React setup, legacy static file archiving, dark mode style migration, and dynamic JSX header counter calculation.
-
 ## Key requests
 
 ### 1. Project initialization and boilerplate cleanup

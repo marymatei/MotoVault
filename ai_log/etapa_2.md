@@ -3,9 +3,6 @@
 ## Tools
 - Gemini
 
-## Conversations
-- Data logic, immutability, and validation for MotoVault inventory
-
 ## Key requests
 
 ### 1. Data model and array setup

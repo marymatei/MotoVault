@@ -3,9 +3,6 @@
 ## Tools
 - Gemini
 
-## Conversations
-- React component decomposition, props data flow, list rendering with map and unique key attributes, and conditional empty state rendering.
-
 ## Key requests
 
 ### 1. Component structure setup

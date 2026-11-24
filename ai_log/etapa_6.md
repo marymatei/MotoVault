@@ -4,9 +4,6 @@
 - Gemini
 - Claude
 
-## Conversations
-- Stage 6 requirement analysis, mock API integration, package.json syntax fix, UI preservation, and useEffect implementation.
-
 ## Key requests
 ### 1. Mock API & useEffect Integration
 Asked: How to setup json-server, fix package.json syntax error, fetch products via api.js using useEffect, handle loading/error UI states, and preserve MotoVault landing page structure.

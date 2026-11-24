@@ -1,6 +1,6 @@
 # MotoVault
 
-MotoVault is a specialized inventory management system for motorcycle dealerships and gear shops. It tracks vehicle and equipment availability, logs sales status, and categorizes products by type and riding discipline.
+MotoVault is a specialized inventory management system for motorcycle dealerships and gear shops. It tracks vehicle and equipment availability, keeps the stock of every product, and groups products by tag.
 
 ## Data model
 
@@ -10,7 +10,7 @@ MotoVault is a specialized inventory management system for motorcycle dealership
 | available | boolean | toggled from the list; true = Available, false = Unavailable |
 | tag | fixed values | Motorcycle, Gear, Protection, Accessories, Consumables |
 | quantity | number | pieces in stock, changed with - / +; 0 makes the item unavailable |
-| photo | image | optional; JPG, PNG or WEBP, 200–4000 px, max 3 MB; saved unchanged in db.json |
+| photo | image | optional; JPG, PNG or WEBP, 200–4000 px, max 3 MB; saved unchanged on the server |
 | category | relation | Naked, Sport, Touring, Protective |
 | user | relation | store manager / inventory operator (from week 11) |
 
@@ -39,6 +39,10 @@ and every change (add, toggle, delete) goes to the API before it shows up in the
 ### Stage 8 (Routing and detail page)
 Three pages behind React Router: the list, a detail page at `/products/:id`,
 and an about page, plus a 404 page. Component styles moved to CSS Modules.
+### Stage 9 (Own backend)
+json-server is gone. The API is an Express server in `backend/`, with REST
+routes, server side validation and CORS. Data is still kept in memory and
+resets on restart.
 
 
 
@@ -52,7 +56,7 @@ and an about page, plus a 404 page. Component styles moved to CSS Modules.
   npm run dev
   ```
   Then open the address printed in the terminal (http://localhost:5173)
-  - **Stage 6-8**: Open two separate terminals in `frontend/`:
+- **Stages 6-8** (with `json-server`, removed in Stage 9): you needed two separate terminals in `frontend/`:
   ### Terminal 1 (API Server)
   ```bash
   npm run api
@@ -62,13 +66,43 @@ and an about page, plus a 404 page. Component styles moved to CSS Modules.
   npm run dev
   ```
   Then open http://localhost:5173
+- **Stage 9**: Open two separate terminals in the project folder:
+  ### Terminal 1 (Express API, port 3001)
+  ```bash
+  cd backend
+  npm install
+  npm run dev
+  ```
+  ### Terminal 2 (Vite Frontend, port 5173)
+  ```bash
+  cd frontend
+  npm install
+  npm run dev
+  ```
+  Then open http://localhost:5173
+- **Test the API with curl** (in Git Bash, with the backend running):
+  ```bash
+  curl -s -w '      -> %{http_code}\n' http://localhost:3001/products
+
+  curl -s -w ' -> %{http_code}\n' -X POST http://localhost:3001/products \
+    -H "Content-Type: application/json" \
+    -d '{"name":"From curl","tag":"Gear","quantity":2}'
+
+  curl -s -w ' -> %{http_code}\n' -X POST http://localhost:3001/products \
+    -H "Content-Type: application/json" \
+    -d '{"name":""}'
+
+  curl -s -w '      -> %{http_code}\n' http://localhost:3001/products/999
+  curl -s -w '      -> %{http_code}\n' -X DELETE http://localhost:3001/products/15
+  ```
+  Expected codes: 200, 201, 400, 404, 204 (15 is the id returned by the POST above).
 
 ## AI usage
 
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Architecture mapping, Vite & React setup, component decomposition, React state management, Light/Dark theme implementation |
-| Claude | SVG logo, vector branding generation, form, validation steps, ideas, routing, stock quantity |
+| Claude | SVG logo, vector branding generation, form, validation steps, ideas, routing, stock quantity, Express backend |
 
 Details per stage: see the [`ai_log/`](ai_log/) folder.
 
@@ -82,7 +116,8 @@ Details per stage: see the [`ai_log/`](ai_log/) folder.
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
 - [x] Stage 8: routing and detail page
-- [ ] Stage 9: own backend with Express
+- [x] Stage 9: own backend with Express
+- [ ] Stage 10: MariaDB and full CRUD
 
 ## Verification Table - Stage 1
 

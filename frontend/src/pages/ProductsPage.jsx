@@ -167,7 +167,7 @@ export default function ProductsPage() {
           )}
           {error && (
             <p className={`error ${styles.message}`} data-testid="error">
-              Server problem: {error}. Did you run <code>npm run api</code>?
+                Server problem: {error}. Is the backend running (<code>npm run dev</code> in <code>backend/</code>)?
             </p>
           )}
           {photoError && (

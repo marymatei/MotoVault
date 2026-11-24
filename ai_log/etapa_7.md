@@ -3,9 +3,6 @@
 ## Tools
 - Claude
 
-## Conversations
-- Stage 7: form and validation
-
 ## Key requests
 
 ### 1. Stage 7 steps adapted to MotoVault

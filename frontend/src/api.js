@@ -8,7 +8,9 @@ async function request(path, options = {}) {
     headers: { "Content-Type": "application/json", ...options.headers },
   });
   if (!res.ok) {
-    throw new Error(`Server error: ${res.status}`);
+    // The own API answers with { error: "..." }
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || `Server error: ${res.status}`);
   }
   // 204 No Content has no body
   return res.status === 204 ? null : res.json();
@@ -36,3 +38,6 @@ export function updateProduct(id, changes) {
 export function deleteProduct(id) {
   return request(`/products/${id}`, { method: "DELETE" });
 }
+
+// app vorbeste prin fetch cu severul
+// aici se citeste mesajul de eroare trimis de server

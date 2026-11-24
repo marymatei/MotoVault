@@ -18,3 +18,5 @@ export default function App() {
     </Routes>
   );
 }
+
+// harta rutelor: ce pag se arata si unde

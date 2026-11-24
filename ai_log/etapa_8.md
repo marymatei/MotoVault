@@ -3,9 +3,6 @@
 ## Tools
 - Claude
 
-## Conversations
-- Stage 8: routing, detail page and CSS Modules, plus my extras (stock, photos) (link: https://claude.ai/share/7010978b-d3bb-4f97-9f55-8274167a1333)
-
 ## Key requests
 
 ### 1. Stage 8 steps adapted to MotoVault
